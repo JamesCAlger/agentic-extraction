@@ -1,0 +1,110 @@
+extraction:
+  model: gpt-4o-mini
+  provider: openai
+  max_chunk_tokens: 1000
+  overlap_tokens: 100
+  max_retries: 2
+  extraction_mode: combined
+  use_examples: true
+  max_examples: 3
+  delay_between_calls: 1.0
+  requests_per_minute: 40
+tiers:
+  tier0_enabled: true
+  tier1_enabled: false
+  tier2_enabled: false
+  tier2_max_chars: 12000
+  tier3_enabled: true
+  tier3_only: true
+  tier3_top_k_sections: 10
+  tier3_max_chunks_per_section: 10
+  tier3_keyword_threshold: 0
+  tier4:
+    enabled: false
+    only: false
+    model: gpt-4o
+    max_iterations: 12
+    timeout_seconds: 180
+    confidence_threshold: 0.8
+    fields_to_extract: []
+  reranker:
+    enabled: true
+    model: rerank-v3.5
+    first_pass_n: 200
+    top_k: 10
+    score_threshold: 0.2
+  embedding_retrieval:
+    enabled: false
+    provider: openai
+    model: text-embedding-3-small
+    dimensions: null
+    top_k: 10
+    prepend_context: false
+    cache_embeddings: true
+  docvqa_enabled: false
+  docvqa_only: false
+  tier3_docvqa: false
+  sequential_docvqa: false
+  tier3_sequential_docvqa: false
+  hybrid_docvqa_tier3: false
+  per_datapoint_tier3: false
+  per_datapoint_tier3_style: false
+  hybrid_boolean_tier3: false
+  dense_retrieval: false
+  hybrid_retrieval: false
+grounding:
+  enabled: true
+  strict_mode: false
+  min_score: 0.0
+confidence:
+  enabled: false
+  require_grounding: true
+  high_threshold: 0.7
+  low_threshold: 0.4
+  weight_llm_confidence: 0.25
+  weight_grounding: 0.35
+  weight_evidence: 0.2
+  weight_retrieval: 0.2
+ensemble:
+  enabled: true
+  methods:
+  - t3_k10
+  - reranker
+  min_confidence_gap: 0.15
+  agreement_boost: 0.1
+  default_method: t3_k10
+  t3_top_k_sections: 10
+  reranker_first_pass_n: 200
+  reranker_top_k: 10
+  escalate_to_t4: true
+  escalate_on_disagreement: true
+  escalate_on_both_null: true
+  t4_model: gpt-4o
+  t4_max_iterations: 12
+  t4_timeout_seconds: 180
+observability:
+  enabled: true
+  trace_level: full
+  save_llm_responses: true
+  output_dir: null
+validation:
+  funds:
+  - Blackstone Private Multi-Asset Credit and Income Fund
+  - StepStone Private Markets
+  - Hamilton Lane Private Assets Fund
+  - Blue Owl Alternative Credit Fund
+  - Carlyle AlpInvest Private Markets Secondaries Fund
+  ground_truth_dir: configs/ground_truth
+cost:
+  input_token_cost: 0.00015
+  output_token_cost: 0.0006
+experiment:
+  name: ensemble_t4_scenario2
+  description: Ensemble T3+Reranker with T4 escalation on disagreement and both-null
+  hypothesis: T4 escalation on nulls recovers 80% of missed values, achieving 90%+
+    accuracy
+field_overrides:
+  share_classes:
+    max_chunk_tokens: 10000
+  allocation_targets:
+    extraction_mode: per_section

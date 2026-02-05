@@ -1,0 +1,275 @@
+{
+  "fund_name": "Blue Owl Alternative Credit Fund",
+  "cik": "0002059436",
+  "filing_path": "data/raw/0002059436/2025-08-07_0001628280-25-039019",
+  "filing_date": "2025-08-07",
+  "form_type": "N-2/A",
+  "created": "2026-01-09",
+  "verified_by": "manual_document_review",
+  "notes": "Interval fund with PE-style incentive fee waterfall including catch-up mechanism",
+
+  "fields": {
+    "fund_type": {
+      "expected": "interval_fund",
+      "source_section": "Cover page",
+      "source_quote": "The Fund is a closed-end interval fund",
+      "nullable": false
+    },
+
+    "share_classes.share_classes": {
+      "expected": [
+        {
+          "class_name": "Class I",
+          "minimum_initial_investment": "250000",
+          "minimum_additional_investment": "500",
+          "sales_load_pct": "0",
+          "distribution_fee_pct": "0"
+        },
+        {
+          "class_name": "Class S",
+          "minimum_initial_investment": "2500",
+          "minimum_additional_investment": "500",
+          "sales_load_pct": "3.5",
+          "distribution_fee_pct": "0.85"
+        },
+        {
+          "class_name": "Class U",
+          "minimum_initial_investment": "2500",
+          "minimum_additional_investment": "500",
+          "sales_load_pct": "3.0",
+          "distribution_fee_pct": "0.75"
+        }
+      ],
+      "match_mode": "exact",
+      "nullable": false,
+      "source_section": "Share Classes section",
+      "source_quote": "The minimum initial investment in the Fund by any investor will be $2,500 with respect to Class S Shares and Class U Shares, and $250,000 with respect to Class I Shares. The minimum additional investment in the Fund by any investor will be $500",
+      "notes": "Fund states explicit minimums, though may be reduced at Fund's discretion for certain investors"
+    },
+
+    "incentive_fee.has_incentive_fee": {
+      "expected": true,
+      "source_section": "THE ADVISER section, Incentive Fee subsection",
+      "source_quote": "10% of all Pre-Incentive Fee Net Investment Income Returns",
+      "nullable": false
+    },
+
+    "incentive_fee.incentive_fee_pct": {
+      "expected": "10",
+      "source_section": "THE ADVISER section, Incentive Fee subsection",
+      "source_quote": "10% of all Pre-Incentive Fee Net Investment Income Returns...hurdle rate of 1.50% per quarter (6.00% annualized)",
+      "nullable": false
+    },
+
+    "incentive_fee.hurdle_rate_pct": {
+      "expected": "6",
+      "source_section": "THE ADVISER section, Incentive Fee subsection",
+      "source_quote": "hurdle rate of 1.50% per quarter (6.00% annualized)",
+      "nullable": false,
+      "notes": "1.5% quarterly = 6% annualized"
+    },
+
+    "incentive_fee.hurdle_rate_as_stated": {
+      "expected": "1.5",
+      "source_section": "THE ADVISER section, Incentive Fee subsection",
+      "source_quote": "hurdle rate of 1.50% per quarter",
+      "nullable": false,
+      "notes": "Raw quarterly hurdle rate before annualization"
+    },
+
+    "incentive_fee.hurdle_rate_frequency": {
+      "expected": "quarterly",
+      "source_section": "THE ADVISER section, Incentive Fee subsection",
+      "nullable": false
+    },
+
+    "incentive_fee.high_water_mark": {
+      "expected": false,
+      "source_section": "THE ADVISER section, Incentive Fee subsection",
+      "nullable": false,
+      "notes": "No high water mark - uses catch-up mechanism instead"
+    },
+
+    "incentive_fee.has_catch_up": {
+      "expected": true,
+      "source_section": "THE ADVISER section, Incentive Fee subsection",
+      "source_quote": "The 'catch-up' is meant to provide the Adviser with approximately 10% of the Fund's Pre-Incentive Fee Net Investment Income Returns as if a hurdle rate did not apply if this net investment income exceeds 1.667% in any calendar quarter",
+      "nullable": false
+    },
+
+    "incentive_fee.catch_up_rate_pct": {
+      "expected": "100",
+      "source_section": "THE ADVISER section, Incentive Fee subsection",
+      "nullable": false,
+      "notes": "100% catch-up between hurdle and ceiling"
+    },
+
+    "incentive_fee.catch_up_ceiling_pct": {
+      "expected": "1.667",
+      "source_section": "THE ADVISER section, Incentive Fee subsection",
+      "source_quote": "if this net investment income exceeds 1.667% in any calendar quarter",
+      "nullable": false
+    },
+
+    "incentive_fee.fee_basis": {
+      "expected": "net_investment_income",
+      "source_section": "THE ADVISER section, Incentive Fee subsection",
+      "source_quote": "Pre-Incentive Fee Net Investment Income Returns",
+      "nullable": false
+    },
+
+    "incentive_fee.crystallization_frequency": {
+      "expected": "quarterly",
+      "source_section": "THE ADVISER section, Incentive Fee subsection",
+      "nullable": false
+    },
+
+    "incentive_fee.underlying_fund_incentive_range": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Direct investment fund, not fund-of-funds"
+    },
+
+    "expense_cap.has_expense_cap": {
+      "expected": true,
+      "source_section": "Expense Limitation Agreement section",
+      "source_quote": "Specified Expenses for each class of Shares do not exceed 0.50% of the average daily net assets",
+      "nullable": false
+    },
+
+    "expense_cap.expense_cap_pct": {
+      "expected": "0.50",
+      "source_section": "Expense Limitation Agreement section",
+      "nullable": false
+    },
+
+    "repurchase_terms.repurchase_frequency": {
+      "expected": "quarterly",
+      "source_section": "REPURCHASE OF SHARES section",
+      "source_quote": "quarterly repurchase offers for between 5% and 25% of the Fund's outstanding Shares",
+      "nullable": false
+    },
+
+    "repurchase_terms.repurchase_amount_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Uses repurchase_percentage_min/max instead"
+    },
+
+    "repurchase_terms.repurchase_basis": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Uses repurchase_percentage_min/max instead"
+    },
+
+    "repurchase_terms.repurchase_percentage_min": {
+      "expected": "5",
+      "source_section": "REPURCHASE OF SHARES section",
+      "source_quote": "repurchase only the minimum amount of 5%",
+      "nullable": false
+    },
+
+    "repurchase_terms.repurchase_percentage_max": {
+      "expected": "25",
+      "source_section": "REPURCHASE OF SHARES section",
+      "nullable": false
+    },
+
+    "repurchase_terms.lock_up_period_years": {
+      "expected": 1,
+      "source_section": "REPURCHASE OF SHARES section",
+      "source_quote": "Prior to one-year anniversary of acquisition",
+      "nullable": false
+    },
+
+    "repurchase_terms.early_repurchase_fee_pct": {
+      "expected": "2",
+      "source_section": "XBRL OtherTransactionExpense1Percent",
+      "source_quote": "2.00% early repurchase fee",
+      "nullable": false
+    },
+
+    "leverage_limits.uses_leverage": {
+      "expected": true,
+      "source_section": "LEVERAGE section",
+      "source_quote": "asset coverage (as defined in the 1940 Act) of 300% or more (for leverage obtained through debt)",
+      "nullable": false
+    },
+
+    "leverage_limits.max_leverage_pct": {
+      "expected": "33",
+      "source_section": "LEVERAGE section",
+      "nullable": false,
+      "notes": "300% asset coverage = 33% leverage (normalized to % of assets that can be borrowed)"
+    },
+
+    "leverage_limits.leverage_basis": {
+      "expected": "asset_coverage",
+      "source_section": "LEVERAGE section",
+      "nullable": false,
+      "notes": "Synonyms: asset_coverage, asset_coverage_ratio are equivalent"
+    },
+
+    "distribution_terms.distribution_frequency": {
+      "expected": "monthly",
+      "source_section": "DISTRIBUTIONS section",
+      "source_quote": "The Fund intends to declare income distributions daily and distribute them to shareholders monthly",
+      "nullable": false
+    },
+
+    "distribution_terms.default_distribution_policy": {
+      "expected": "reinvested",
+      "source_section": "DISTRIBUTION REINVESTMENT PLAN",
+      "source_quote": "Unless a Shareholder elects otherwise, the Shareholder will be deemed to have elected to have all distributions reinvested",
+      "nullable": false
+    },
+
+    "allocation_targets.secondary_funds_min_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Direct investment fund, not fund-of-funds with allocation targets"
+    },
+
+    "allocation_targets.secondary_funds_max_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Direct investment fund, not fund-of-funds with allocation targets"
+    },
+
+    "allocation_targets.direct_investments_min_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Not applicable"
+    },
+
+    "allocation_targets.direct_investments_max_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Not applicable"
+    },
+
+    "allocation_targets.secondary_investments_min_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Not a secondaries-focused fund"
+    },
+
+    "concentration_limits.max_single_asset_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Not specified in document"
+    },
+
+    "concentration_limits.max_single_fund_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Not specified in document"
+    },
+
+    "concentration_limits.max_single_sector_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Not specified in document"
+    }
+  }
+}

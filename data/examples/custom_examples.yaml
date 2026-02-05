@@ -1,0 +1,286 @@
+# Custom Few-Shot Examples
+# =========================
+# Real examples extracted from SEC filings for StepStone and Blackstone funds.
+# These examples demonstrate actual text from N-2 filings for training LLM extraction.
+
+# ─── REPURCHASE EXAMPLES ───
+repurchase:
+  - source_text: |
+      The Fund has adopted, pursuant to Rule 23c-3 under the 1940 Act, a fundamental
+      policy, which cannot be changed without shareholder approval, requiring the Fund
+      to offer to repurchase at least 5% and up to 25% of its Common Shares at NAV on
+      a quarterly basis. Although the policy permits repurchases of between 5% and 25%
+      of the Fund's outstanding Common Shares, for each quarterly repurchase offer,
+      the Fund currently expects to offer to repurchase 5% of the Fund's outstanding
+      Common Shares (in the aggregate across all share classes) at NAV (either by
+      number of shares or aggregate NAV) subject to the approval of the Board of
+      Trustees. Written notification of each quarterly repurchase offer will be sent
+      to shareholders at least 21 calendar days before the repurchase request deadline.
+    extraction:
+      fund_structure: interval_fund
+      repurchase_frequency: quarterly
+      repurchase_percentage_min: 5
+      repurchase_percentage_max: 25
+      repurchase_percentage_typical: 5
+      notice_period_days: 21
+      confidence: explicit
+      citation: "requiring the Fund to offer to repurchase at least 5% and up to 25% of its Common Shares at NAV on a quarterly basis"
+    field_category: repurchase
+    fund_name: Blackstone Private Multi-Asset Credit
+    filing_type: N-2
+    section_title: SHARE REPURCHASE PROGRAM
+    notes: Interval fund with Rule 23c-3 fundamental policy. Clear min/max range and typical offer percentage.
+    difficulty: easy
+
+  - source_text: |
+      The Advisers intend to seek the Board's approval to offer a quarterly share
+      repurchase program where the total amount of aggregate repurchases of Shares
+      amounts to up to 5% of the Fund's outstanding Shares per quarter. There is no
+      guarantee that the Advisers will seek Board approval of, or that the Board
+      will approve, a tender offer in any given quarter.
+    extraction:
+      fund_structure: tender_offer_fund
+      repurchase_frequency: quarterly
+      repurchase_percentage_min: null
+      repurchase_percentage_max: 5
+      repurchase_percentage_typical: 5
+      notice_period_days: null
+      repurchase_discretionary: true
+      confidence: explicit
+      citation: "quarterly share repurchase program where the total amount of aggregate repurchases of Shares amounts to up to 5%"
+    field_category: repurchase
+    fund_name: StepStone Private Markets
+    filing_type: N-2
+    section_title: REPURCHASES AND TRANSFERS OF SHARES
+    notes: Tender offer fund - Board discretionary repurchases, not a fundamental policy. Note the "intend to seek" language indicating no guarantee.
+    difficulty: medium
+
+# ─── SHARE CLASS EXAMPLES ───
+share_classes:
+  - source_text: |
+      The minimum initial investment is $5,000 for Class S Shares and Class D Shares.
+      The minimum initial investment for Class I Shares is $1,000,000. The minimum
+      initial investment may be reduced at the Adviser's discretion.
+
+      The Fund will pay a distribution and/or shareholder servicing fee out of the
+      net assets of Class S Shares at the annual rate of 0.85% of the aggregate NAV
+      attributable to Class S Shares, determined and accrued on each business day,
+      of which 0.25% will be a shareholder servicing fee.
+
+      The Fund will pay a distribution and/or shareholder servicing fee out of the
+      net assets of Class D Shares at the annual rate of 0.25% of the aggregate NAV
+      attributable to Class D Shares, all 0.25% of which will be a shareholder
+      servicing fee. Class I Shares are not subject to any distribution and/or
+      shareholder servicing fee.
+
+      Class S Shares will be charged, at the time of purchase, a sales load of 3.50%
+      of the investment amount. Class I and Class D Shares are not subject to any
+      sales load at the time of purchase.
+    extraction:
+      share_classes:
+        - class_name: Class S
+          sales_load_pct: 3.5
+          distribution_fee_pct: 0.85
+          shareholder_servicing_fee_pct: 0.25
+          minimum_initial_investment: 5000
+          minimum_additional_investment: null
+        - class_name: Class D
+          sales_load_pct: 0
+          distribution_fee_pct: 0.25
+          shareholder_servicing_fee_pct: 0.25
+          minimum_initial_investment: 5000
+          minimum_additional_investment: null
+        - class_name: Class I
+          sales_load_pct: 0
+          distribution_fee_pct: 0
+          minimum_initial_investment: 1000000
+          minimum_additional_investment: null
+          investor_eligibility: institutional
+      confidence: explicit
+    field_category: share_classes
+    fund_name: StepStone Private Markets
+    filing_type: N-2
+    section_title: PLAN OF DISTRIBUTION
+    notes: Three share classes with clearly stated fees. Note the 0.85% for Class S includes 0.25% shareholder servicing.
+    difficulty: medium
+
+  - source_text: |
+      We are offering on a continuous basis up to $5,000,000,000 of Common Shares
+      (consisting of Class S Shares, Class D Shares and Class I Shares). The Fund
+      is authorized to issue an unlimited number of Common Shares.
+
+      Class S shares: shareholder servicing and/or distribution fee at an annual
+      rate of 0.85% of the value of its net assets. Class S shares are subject to
+      a maximum sales load of 3.50% of the investor's subscription.
+
+      Class D shares: shareholder servicing and/or distribution fee at an annual
+      rate of 0.25% of the value of its net assets.
+
+      Class I shares: No shareholder servicing fee or distribution fee.
+    extraction:
+      share_classes:
+        - class_name: Class S
+          sales_load_pct: 3.5
+          distribution_fee_pct: 0.85
+          minimum_initial_investment: null
+        - class_name: Class D
+          sales_load_pct: 0
+          distribution_fee_pct: 0.25
+          minimum_initial_investment: null
+        - class_name: Class I
+          sales_load_pct: 0
+          distribution_fee_pct: 0
+          minimum_initial_investment: null
+      total_offering_amount: 5000000000
+      confidence: explicit
+    field_category: share_classes
+    fund_name: Blackstone Private Multi-Asset Credit
+    filing_type: N-2
+    section_title: PROSPECTUS SUMMARY
+    notes: Share classes with fees but minimum investments specified elsewhere in the document.
+    difficulty: medium
+
+# ─── ALLOCATION EXAMPLES ───
+allocation:
+  - source_text: |
+      Under normal circumstances, we will invest directly or indirectly at least 80%
+      of our assets (net assets plus borrowings for investment purposes) in private
+      credit investments (loans, bonds and other credit-oriented investments) and
+      other investments that are expected to make regular distributions, dividends
+      or interest payments and generate returns primarily from income, in each case,
+      that are issued in private offerings or issued by private companies.
+
+      Our investments are organized into four verticals: Private Corporate Credit,
+      Asset Based & Real Estate Credit, Structured Credit, and Liquid Credit.
+    extraction:
+      allocations:
+        - asset_class: Private Credit Investments
+          target_percentage: 80
+          range_min: 80
+          range_max: null
+          description: "loans, bonds and other credit-oriented investments"
+        - asset_class: Private Corporate Credit
+          target_percentage: null
+          range_min: null
+          range_max: null
+        - asset_class: Asset Based & Real Estate Credit
+          target_percentage: null
+          range_min: null
+          range_max: null
+        - asset_class: Structured Credit
+          target_percentage: null
+          range_min: null
+          range_max: null
+        - asset_class: Liquid Credit
+          target_percentage: null
+          range_min: null
+          range_max: null
+      allocation_approach: flexible
+      confidence: explicit
+      citation: "invest directly or indirectly at least 80% of our assets... in private credit investments"
+    field_category: allocation
+    fund_name: Blackstone Private Multi-Asset Credit
+    filing_type: N-2
+    section_title: INVESTMENT OBJECTIVES AND PRACTICES
+    notes: 80% minimum policy with four investment verticals. Specific allocations within verticals not specified.
+    difficulty: medium
+
+# ─── CONCENTRATION EXAMPLES ───
+concentration:
+  - source_text: |
+      We have no minimum or maximum limit on the amount of our assets that may be
+      invested in non-U.S. securities or investments. We may invest without limit
+      in securities of issuers located outside the United States, including
+      emerging market securities.
+    extraction:
+      limits:
+        - limit_type: geography
+          limit_percentage: null
+          description: "No minimum or maximum limit on non-U.S. investments"
+      has_concentration_limits: false
+      geographic_limit: null
+      confidence: explicit
+      citation: "no minimum or maximum limit on the amount of our assets that may be invested in non-U.S. securities"
+    field_category: concentration
+    fund_name: Blackstone Private Multi-Asset Credit
+    filing_type: N-2
+    section_title: INVESTMENT OBJECTIVES AND PRACTICES
+    notes: Explicitly states no geographic concentration limits - extract absence of limits as meaningful information.
+    difficulty: hard
+
+# ─── FEE EXAMPLES ───
+fees:
+  - source_text: |
+      The base management fee paid to our Adviser is calculated at an annual rate
+      of 0.75% of the value of our net assets as of the beginning of each business
+      day. The Adviser has contractually agreed to waive the management fee in full
+      for a six-month period beginning from the date the Fund completes its first
+      sale of shares in its public offering.
+
+      The waiver of the base management fee under the Management Fee Waiver Agreement
+      is not subject to recoupment by the Adviser under the Expense Limitation and
+      Reimbursement Agreement.
+    extraction:
+      management_fee_rate: 0.75
+      management_fee_basis: net assets
+      management_fee_frequency: daily accrual
+      has_fee_waiver: true
+      fee_waiver_duration: 6 months from first sale
+      fee_waiver_recoupable: false
+      confidence: explicit
+      citation: "annual rate of 0.75% of the value of our net assets"
+    field_category: fees
+    fund_name: Blackstone Private Multi-Asset Credit
+    filing_type: N-2
+    section_title: FEES AND EXPENSES
+    notes: Management fee with temporary waiver. Note waiver is not subject to recoupment.
+    difficulty: medium
+
+  - source_text: |
+      The incentive fee, if any, is based on income, whereby we will pay the
+      Adviser quarterly in arrears 12.5% of our Pre-Incentive Fee Net Investment
+      Income Returns for each calendar quarter subject to a 5% annualized hurdle
+      rate, with a full catch-up.
+    extraction:
+      has_incentive_fee: true
+      incentive_fee_rate: 12.5
+      incentive_fee_type: income-based
+      incentive_fee_frequency: quarterly
+      hurdle_rate: 5.0
+      hurdle_rate_basis: annualized
+      catch_up: true
+      catch_up_type: full
+      high_water_mark: null
+      confidence: explicit
+      citation: "12.5% of our Pre-Incentive Fee Net Investment Income Returns... subject to a 5% annualized hurdle rate"
+    field_category: fees
+    fund_name: Blackstone Private Multi-Asset Credit
+    filing_type: N-2
+    section_title: FEES AND EXPENSES
+    notes: Income-based incentive fee with hurdle rate and catch-up provision. Common structure for credit funds.
+    difficulty: medium
+
+  - source_text: |
+      The Fund does not charge a performance-based fee at the fund level. However,
+      the Investment Funds in which the Fund intends to invest generally charge a
+      management fee of 1.00% to 2.00% based on committed capital, and approximately
+      15% - 20% of net profits as a Performance Fee.
+
+      The 0.59% shown as Acquired Fund Fees and Expenses reflects operating expenses
+      of the Investment Funds (e.g., management fees, administration fees and
+      professional and other direct, fixed fees and expenses of the Investment Funds).
+    extraction:
+      has_incentive_fee: false
+      management_fee_rate: 1.40
+      underlying_fund_management_range: "1.00% to 2.00%"
+      underlying_fund_incentive_range: "15% to 20%"
+      affe: 0.59
+      affe_excludes_performance_fees: true
+      confidence: explicit
+      citation: "does not charge a performance-based fee at the fund level"
+    field_category: fees
+    fund_name: StepStone Private Markets
+    filing_type: N-2
+    section_title: FEES AND EXPENSES
+    notes: Fund-of-funds structure with no fund-level performance fee. AFFE excludes underlying fund performance fees.
+    difficulty: hard

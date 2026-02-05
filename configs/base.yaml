@@ -1,0 +1,166 @@
+# Base Extraction Configuration
+# =============================
+# This file defines the default parameters for the extraction pipeline.
+# Experiment configs in configs/experiments/ can override specific values.
+#
+# Usage:
+#   python -m pipeline.experiment run --config configs/base.yaml
+#   python -m pipeline.experiment run --config configs/experiments/per_section_mode.yaml
+
+# -----------------------------------------------------------------------------
+# LLM Extraction Settings
+# -----------------------------------------------------------------------------
+extraction:
+  # Model to use for LLM extraction
+  # Supported: gpt-4o-mini, gpt-4o, claude-3-5-sonnet-20241022, gemini-1.5-flash
+  model: gpt-4o-mini
+
+  # LLM provider (auto-detected from model name if null)
+  # Options: openai, anthropic, google
+  provider: null
+
+  # Maximum tokens per chunk when splitting sections for LLM
+  max_chunk_tokens: 2000
+
+  # Token overlap between consecutive chunks (for context continuity)
+  overlap_tokens: 200
+
+  # Maximum retries for failed LLM calls (instructor library)
+  max_retries: 2
+
+  # Extraction mode: how to process document sections
+  # - combined: send all relevant sections to LLM together (original behavior)
+  # - per_section: extract each section individually, then merge results
+  extraction_mode: combined
+
+  # Whether to include few-shot examples in prompts
+  use_examples: true
+
+  # Maximum number of examples per field prompt
+  max_examples: 3
+
+  # Rate limiting to avoid TPM/RPM caps
+  # Seconds to wait between API calls (0 = no delay)
+  delay_between_calls: 0.0
+
+  # Max requests per minute (null = no limit)
+  # Suggested values by provider:
+  #   - OpenAI GPT-4o-mini: 500 (very generous limits)
+  #   - OpenAI GPT-4o: 100 (lower limits)
+  #   - Anthropic Claude: 40 (40k TPM at Tier 1)
+  #   - Google Gemini Flash: 300 (1M TPM free tier)
+  requests_per_minute: null
+
+# -----------------------------------------------------------------------------
+# Tier Configuration
+# -----------------------------------------------------------------------------
+# The extraction pipeline uses a tiered approach:
+#   Tier 0: Deterministic XBRL tag parsing (100% accurate)
+#   Tier 1: Section-to-field mapping + LLM extraction
+#   Tier 2: Regex pattern fallback for untagged sections
+#   Tier 3: Keyword-guided scoped agentic search
+
+tiers:
+  # Tier 0: Deterministic XBRL parsing
+  tier0_enabled: true
+
+  # Tier 1: Section mapping + LLM extraction
+  tier1_enabled: true
+
+  # Tier 2: Regex fallback for missing sections
+  tier2_enabled: true
+  tier2_max_chars: 12000  # Max chars to extract per fallback section
+
+  # Tier 3: Scoped agentic search
+  tier3_enabled: true
+  tier3_top_k_sections: 5  # Number of top sections to search
+  tier3_max_chunks_per_section: 10  # Max chunks per section
+  tier3_keyword_threshold: 0  # Minimum keyword score to include section
+
+  # Cohere Reranker for Tier 3 (improves chunk selection via semantic relevance)
+  # Cost: ~$2 per 1,000 rerank calls (very cheap vs LLM extraction)
+  reranker:
+    enabled: false  # Set to true to enable Cohere reranking
+    model: "rerank-v3.5"  # Cohere rerank model
+    first_pass_n: 50  # Max chunks to send to reranker from keyword scoring
+    top_k: 15  # Chunks to return from reranker for LLM extraction
+    score_threshold: 0.3  # Minimum relevance score to include chunk
+
+# -----------------------------------------------------------------------------
+# Grounding Validation
+# -----------------------------------------------------------------------------
+# Verifies that extracted values appear in the source text
+
+grounding:
+  # Enable grounding validation
+  enabled: true
+
+  # If true, reject values that fail grounding (currently not implemented)
+  strict_mode: false
+
+  # Minimum grounding score to consider a value grounded
+  min_score: 0.0
+
+# -----------------------------------------------------------------------------
+# Observability / Tracing
+# -----------------------------------------------------------------------------
+# Controls how much detail is captured during extraction
+
+observability:
+  # Enable decision tracing
+  enabled: true
+
+  # Trace detail level
+  # - full: capture all decisions, LLM responses, evidence
+  # - summary: capture tier decisions and final values only
+  # - minimal: capture final values only
+  trace_level: full
+
+  # Whether to save raw LLM responses in trace
+  save_llm_responses: true
+
+  # Directory to save decision traces (optional, null = don't auto-save)
+  output_dir: null
+
+# -----------------------------------------------------------------------------
+# Validation Funds
+# -----------------------------------------------------------------------------
+# Funds to include in validation runs (by fund name)
+
+validation:
+  # List of fund names for validation runs
+  funds:
+    - "Blackstone Private Multi-Asset Credit and Income Fund"
+    - "StepStone Private Markets"
+    - "Hamilton Lane Private Assets Fund"
+    - "Blue Owl Alternative Credit Fund"
+    - "Carlyle AlpInvest Private Markets Secondaries Fund"
+
+  # Path pattern for ground truth files
+  ground_truth_dir: "configs/ground_truth"
+
+# -----------------------------------------------------------------------------
+# Cost Tracking
+# -----------------------------------------------------------------------------
+# For estimating API costs
+
+cost:
+  # Cost per 1K input tokens (GPT-4o-mini as of Jan 2026)
+  input_token_cost: 0.00015
+
+  # Cost per 1K output tokens (GPT-4o-mini as of Jan 2026)
+  output_token_cost: 0.0006
+
+# -----------------------------------------------------------------------------
+# Field-Specific Settings
+# -----------------------------------------------------------------------------
+# Override settings for specific fields
+
+field_overrides:
+  # Share classes often need more context
+  share_classes:
+    max_chunk_tokens: 10000
+
+  # Allocation targets span multiple sections
+  allocation_targets:
+    extraction_mode: per_section

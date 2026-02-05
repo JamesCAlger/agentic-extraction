@@ -1,0 +1,70 @@
+experiment:
+  name: no_validation_baseline_5funds
+  description: No validation baseline with ALL 5 funds for fair comparison
+  hypothesis: Baseline comparison with 5 funds including Carlyle
+
+# Use the ensemble T4 approach but disable all validation - matches original no_validation_baseline
+ensemble:
+  enabled: true
+  methods:
+    - t3_k10
+    - reranker
+  min_confidence_gap: 0.15
+  agreement_boost: 0.10
+  default_method: t3_k10
+  t3_top_k_sections: 10
+  reranker_first_pass_n: 200
+  reranker_top_k: 10
+  escalate_to_t4: true
+  escalate_on_disagreement: true
+  escalate_on_both_null: true
+  t4_model: claude-haiku-4-5-20251001
+  t4_max_iterations: 12
+  t4_timeout_seconds: 180
+
+  # DISABLE adversarial validation
+  adversarial_validation_enabled: false
+  adversarial_validation_lightweight: false
+  adversarial_validation_validate_booleans: false
+  adversarial_validation_validate_all: false
+
+tiers:
+  tier0_enabled: true
+  tier1_enabled: false
+  tier2_enabled: false
+  tier3_enabled: true
+  tier3_only: true
+  tier3_top_k_sections: 10
+  tier3_max_chunks_per_section: 15
+  tier4:
+    enabled: false
+    adversarial_validation:
+      enabled: false
+      lightweight: false
+      validate_booleans: false
+  reranker:
+    enabled: true
+    model: rerank-v3.5
+    first_pass_n: 200
+    top_k: 10
+    score_threshold: 0.2
+
+chunking:
+  strategy: paragraph_atomic
+  max_tokens: 500
+  overlap_tokens: 0
+  min_paragraph_tokens: 30
+
+extraction:
+  model: gpt-4o-mini
+  delay_between_calls: 1.0
+  requests_per_minute: 40
+
+validation:
+  funds:
+    - Blackstone Private Multi-Asset Credit and Income Fund
+    - StepStone Private Markets
+    - Hamilton Lane Private Assets Fund
+    - Blue Owl Alternative Credit Fund
+    - Carlyle AlpInvest Private Markets Secondaries Fund
+  ground_truth_dir: configs/ground_truth

@@ -1,0 +1,257 @@
+{
+  "fund_name": "StepStone Private Markets",
+  "cik": "0001789470",
+  "filing_path": "data/raw/0001789470/2025-08-19_0001193125-25-183488",
+  "filing_date": "2025-08-19",
+  "form_type": "N-2",
+  "created": "2026-01-08",
+  "verified_by": "excel_datapoints_to_extract",
+  "notes": "Test script currently maps this to 'Hamilton Lane Private Assets' - needs correction",
+
+  "fields": {
+    "fund_type": {
+      "expected": "tender_offer_fund",
+      "source_section": "Fund Overview",
+      "source_quote": "Registered Closed-End Fund",
+      "nullable": false,
+      "notes": "Discretionary tender offer fund (IntervalFundFlag=false), not interval fund"
+    },
+
+    "share_classes.share_classes": {
+      "expected": [
+        {
+          "class_name": "Class S",
+          "minimum_initial_investment": 5000,
+          "minimum_additional_investment": 5000,
+          "sales_load_pct": "3.5",
+          "distribution_fee_pct": "0.85"
+        },
+        {
+          "class_name": "Class D",
+          "minimum_initial_investment": 5000,
+          "minimum_additional_investment": 5000,
+          "sales_load_pct": "0",
+          "distribution_fee_pct": "0.25"
+        },
+        {
+          "class_name": "Class I",
+          "minimum_initial_investment": 1000000,
+          "minimum_additional_investment": 100000,
+          "sales_load_pct": "0",
+          "distribution_fee_pct": "0"
+        }
+      ],
+      "match_mode": "exact",
+      "nullable": false,
+      "notes": "Document states: minimum initial investment is $5,000 with additional investment minimums of $5,000"
+    },
+
+    "incentive_fee.has_incentive_fee": {
+      "expected": false,
+      "source_section": "Fees and Expenses",
+      "nullable": false,
+      "notes": "Fund does not charge fund-level incentive fee"
+    },
+
+    "incentive_fee.incentive_fee_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "No fund-level incentive fee"
+    },
+
+    "incentive_fee.hurdle_rate_pct": {
+      "expected": null,
+      "nullable": true
+    },
+
+    "incentive_fee.hurdle_rate_as_stated": {
+      "expected": null,
+      "nullable": true,
+      "notes": "No hurdle rate - no fund-level incentive fee"
+    },
+
+    "incentive_fee.hurdle_rate_frequency": {
+      "expected": null,
+      "nullable": true,
+      "notes": "No hurdle rate - no fund-level incentive fee"
+    },
+
+    "incentive_fee.high_water_mark": {
+      "expected": null,
+      "nullable": true
+    },
+
+    "incentive_fee.has_catch_up": {
+      "expected": null,
+      "nullable": true,
+      "notes": "No fund-level incentive fee"
+    },
+
+    "incentive_fee.catch_up_rate_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "No fund-level incentive fee"
+    },
+
+    "incentive_fee.catch_up_ceiling_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "No fund-level incentive fee"
+    },
+
+    "incentive_fee.fee_basis": {
+      "expected": null,
+      "nullable": true,
+      "notes": "No fund-level incentive fee"
+    },
+
+    "incentive_fee.crystallization_frequency": {
+      "expected": null,
+      "nullable": true,
+      "notes": "No fund-level incentive fee"
+    },
+
+    "incentive_fee.underlying_fund_incentive_range": {
+      "expected": "15% to 20%",
+      "source_section": "Acquired Fund Fees And Expenses Note",
+      "source_quote": "the underlying private funds in which the Fund invests typically charge management fees ranging from 1.0% to 2.0% and incentive fees or carried interest of approximately 15% to 20% of net profits",
+      "nullable": false
+    },
+
+    "expense_cap.has_expense_cap": {
+      "expected": true,
+      "source_section": "Fee Table Footnote",
+      "source_quote": "Expense Cap has been applied through the first anniversary of the effectiveness date of this registration statement",
+      "nullable": false,
+      "notes": "Expense cap of 5% applied through first anniversary of registration effectiveness"
+    },
+
+    "expense_cap.expense_cap_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Expense cap percentage not explicitly stated in available excerpts"
+    },
+
+    "repurchase_terms.repurchase_frequency": {
+      "expected": "quarterly",
+      "source_section": "Repurchase of shares and distributions",
+      "nullable": false
+    },
+
+    "repurchase_terms.repurchase_amount_pct": {
+      "expected": "5",
+      "source_section": "Repurchase of shares and distributions",
+      "nullable": false
+    },
+
+    "repurchase_terms.repurchase_basis": {
+      "expected": "number_of_shares",
+      "source_section": "p.60, repurchase of shares",
+      "nullable": false
+    },
+
+    "repurchase_terms.repurchase_percentage_min": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Uses repurchase_amount_pct instead"
+    },
+
+    "repurchase_terms.repurchase_percentage_max": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Uses repurchase_amount_pct instead"
+    },
+
+    "repurchase_terms.lock_up_period_years": {
+      "expected": null,
+      "nullable": true,
+      "notes": "No lock-up period"
+    },
+
+    "repurchase_terms.early_repurchase_fee_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "No early repurchase fee"
+    },
+
+    "leverage_limits.uses_leverage": {
+      "expected": true,
+      "source_section": "Fund data",
+      "nullable": false
+    },
+
+    "leverage_limits.max_leverage_pct": {
+      "expected": "33",
+      "source_section": "Fund data",
+      "nullable": false,
+      "notes": "33% = 0.33 of total assets"
+    },
+
+    "leverage_limits.leverage_basis": {
+      "expected": "total_assets",
+      "source_section": "Fund data",
+      "nullable": false
+    },
+
+    "distribution_terms.distribution_frequency": {
+      "expected": "annual",
+      "source_section": "Repurchase of shares and distributions",
+      "nullable": false
+    },
+
+    "distribution_terms.default_distribution_policy": {
+      "expected": "DRIP",
+      "source_section": "Repurchase of shares and distributions",
+      "source_quote": "reinvested (DRIP)",
+      "nullable": false
+    },
+
+    "allocation_targets.secondary_funds_min_pct": {
+      "expected": "40",
+      "source_section": "investment type",
+      "nullable": false
+    },
+
+    "allocation_targets.secondary_funds_max_pct": {
+      "expected": "70",
+      "source_section": "investment type",
+      "nullable": false
+    },
+
+    "allocation_targets.direct_investments_min_pct": {
+      "expected": "20",
+      "source_section": "investment type",
+      "nullable": false
+    },
+
+    "allocation_targets.direct_investments_max_pct": {
+      "expected": "50",
+      "source_section": "investment type",
+      "nullable": false
+    },
+
+    "allocation_targets.secondary_investments_min_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Uses secondary_funds_min_pct instead"
+    },
+
+    "concentration_limits.max_single_asset_pct": {
+      "expected": "25",
+      "source_section": "Concentration limits",
+      "nullable": false
+    },
+
+    "concentration_limits.max_single_fund_pct": {
+      "expected": "25",
+      "source_section": "Concentration limits",
+      "nullable": false
+    },
+
+    "concentration_limits.max_single_sector_pct": {
+      "expected": "25",
+      "source_section": "Concentration limits",
+      "nullable": false
+    }
+  }
+}

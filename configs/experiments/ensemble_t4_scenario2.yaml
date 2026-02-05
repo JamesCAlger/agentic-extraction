@@ -1,0 +1,104 @@
+# Ensemble T4 Scenario 2: T3 + Reranker with T4 escalation on disagreement + nulls
+#
+# This experiment validates the ensemble approach:
+# 1. Run T3 k=10 and Reranker 200->10 on all fields
+# 2. Accept when both agree on non-null value (~91% accuracy on accepted)
+# 3. Escalate to T4 when disagreement OR both null
+#
+# Expected results (from simulation):
+# - Accept rate: ~38% of fields
+# - Escalation rate: ~62% (19 disagreements + 89 both-null)
+# - T4 should find ~80% of escalated values
+# - Overall accuracy: ~90%
+# - Cost: ~$6.11 per 5-fund run
+#
+# NOTE: T4 changes in tier4_agentic.py automatically flow through to this experiment.
+# If T4 API changes, update ensemble_t4_extractor.py accordingly.
+
+experiment:
+  name: ensemble_t4_scenario2
+  description: "Ensemble T3+Reranker with T4 escalation on disagreement and both-null"
+  hypothesis: "T4 escalation on nulls recovers 80% of missed values, achieving 90%+ accuracy"
+
+extraction:
+  model: gpt-4o-mini
+  provider: openai
+  max_chunk_tokens: 1000
+  overlap_tokens: 100
+  max_retries: 2
+  extraction_mode: combined
+  use_examples: true
+  max_examples: 3
+  delay_between_calls: 1.0
+  requests_per_minute: 40
+
+tiers:
+  tier0_enabled: true
+  tier1_enabled: false
+  tier2_enabled: false
+  tier3_enabled: true
+  tier3_only: true
+  tier3_top_k_sections: 10
+  tier3_max_chunks_per_section: 10
+  tier3_keyword_threshold: 0
+
+  # Reranker config (used by ensemble for second extraction)
+  reranker:
+    enabled: true
+    model: rerank-v3.5
+    first_pass_n: 200
+    top_k: 10
+    score_threshold: 0.2
+
+  # T4 config (used for escalated fields)
+  tier4:
+    enabled: false  # Not standalone, controlled by ensemble
+    model: gpt-4o
+    max_iterations: 12
+    timeout_seconds: 180
+    confidence_threshold: 0.8
+
+ensemble:
+  enabled: true
+  escalate_to_t4: true  # Enable T4 escalation mode
+
+  # Method configs
+  t3_top_k_sections: 10
+  reranker_first_pass_n: 200
+  reranker_top_k: 10
+
+  # T4 escalation settings
+  escalate_on_disagreement: true  # Escalate when T3 != Reranker
+  escalate_on_both_null: true     # Scenario 2: Also escalate when both null
+  t4_model: gpt-4o
+  t4_max_iterations: 12
+  t4_timeout_seconds: 180
+
+grounding:
+  enabled: true
+  strict_mode: false
+  min_score: 0.0
+
+observability:
+  enabled: true
+  trace_level: full
+  save_llm_responses: true
+
+validation:
+  funds:
+    - Blackstone Private Multi-Asset Credit and Income Fund
+    - StepStone Private Markets
+    - Hamilton Lane Private Assets Fund
+    - Blue Owl Alternative Credit Fund
+    - Carlyle AlpInvest Private Markets Secondaries Fund
+  ground_truth_dir: configs/ground_truth
+
+cost:
+  input_token_cost: 0.00015   # gpt-4o-mini input
+  output_token_cost: 0.0006   # gpt-4o-mini output
+
+field_overrides:
+  share_classes:
+    max_chunk_tokens: 10000
+  allocation_targets:
+    extraction_mode: per_section

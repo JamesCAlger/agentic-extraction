@@ -1,0 +1,277 @@
+{
+  "fund_name": "Carlyle AlpInvest Private Markets Secondaries Fund",
+  "cik": "0002058263",
+  "filing_path": "data/raw/0002058263/2025-09-17_0001398344-25-018198",
+  "filing_date": "2025-09-17",
+  "form_type": "N-2/A",
+  "created": "2026-01-09",
+  "updated": "2026-01-11",
+  "verified_by": "manual_document_review",
+  "notes": "Secondaries-focused tender offer fund managed by Carlyle AlpInvest. Field names updated to match extraction schema.",
+
+  "fields": {
+    "fund_type": {
+      "expected": "tender_offer_fund",
+      "source_section": "Cover page",
+      "source_quote": "IntervalFundFlag = false",
+      "nullable": false,
+      "notes": "Discretionary tender offer fund, not interval fund"
+    },
+
+    "share_classes.share_classes": {
+      "expected": [
+        {
+          "class_name": "Class U",
+          "minimum_initial_investment": 25000,
+          "minimum_additional_investment": 10000,
+          "sales_load_pct": "3.00",
+          "distribution_fee_pct": "0.85"
+        },
+        {
+          "class_name": "Class D",
+          "minimum_initial_investment": 10000000,
+          "minimum_additional_investment": 100000,
+          "sales_load_pct": "3.00",
+          "distribution_fee_pct": "0.25"
+        },
+        {
+          "class_name": "Class I",
+          "minimum_initial_investment": 25000,
+          "minimum_additional_investment": 10000,
+          "sales_load_pct": "0",
+          "distribution_fee_pct": "0"
+        }
+      ],
+      "match_mode": "exact",
+      "nullable": false,
+      "notes": "Class D minimum may be reduced to $25,000 for certain investors. distribution_fee_pct (not distribution_servicing_fee_pct) to match extraction schema."
+    },
+
+    "incentive_fee.has_incentive_fee": {
+      "expected": true,
+      "source_section": "MANAGEMENT AND INCENTIVE FEES",
+      "nullable": false
+    },
+
+    "incentive_fee.incentive_fee_pct": {
+      "expected": "12.5",
+      "source_section": "MANAGEMENT AND INCENTIVE FEES",
+      "source_quote": "Incentive Fee equal to 12.5% of the excess, if any, of (i) the net profits of the Fund for the relevant period over (ii) the then balance, if any, of the Loss Carryforward Account",
+      "nullable": false
+    },
+
+    "incentive_fee.hurdle_rate_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "No explicit hurdle rate - uses Loss Carryforward Account mechanism instead"
+    },
+
+    "incentive_fee.hurdle_rate_as_stated": {
+      "expected": null,
+      "nullable": true,
+      "notes": "No hurdle rate"
+    },
+
+    "incentive_fee.hurdle_rate_frequency": {
+      "expected": null,
+      "nullable": true,
+      "notes": "No hurdle rate"
+    },
+
+    "incentive_fee.high_water_mark": {
+      "expected": true,
+      "source_section": "MANAGEMENT AND INCENTIVE FEES",
+      "source_quote": "the then balance, if any, of the Loss Carryforward Account",
+      "nullable": false,
+      "notes": "Loss Carryforward/Recovery Account functions as high water mark mechanism - prevents paying incentive on recovered losses"
+    },
+
+    "incentive_fee.has_catch_up": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Uses Loss Carryforward Account instead of catch-up"
+    },
+
+    "incentive_fee.catch_up_rate_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Not applicable - no catch-up mechanism"
+    },
+
+    "incentive_fee.catch_up_ceiling_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Not applicable - no catch-up mechanism"
+    },
+
+    "incentive_fee.fee_basis": {
+      "expected": "net_profits",
+      "source_section": "MANAGEMENT AND INCENTIVE FEES",
+      "source_quote": "net profits of the Fund",
+      "nullable": false,
+      "notes": "Changed from total_return to net_profits to match document text and extraction output"
+    },
+
+    "incentive_fee.crystallization_frequency": {
+      "expected": "quarterly",
+      "source_section": "MANAGEMENT AND INCENTIVE FEES",
+      "source_quote": "Incentive Fees are accrued monthly and paid quarterly",
+      "nullable": false
+    },
+
+    "incentive_fee.underlying_fund_incentive_range": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Not specified in document"
+    },
+
+    "expense_cap.has_expense_cap": {
+      "expected": true,
+      "source_section": "Expense Limitation Agreement",
+      "source_quote": "the Adviser has agreed to waive its Management Fee and/or pay or absorb operating expenses of the Fund to the extent necessary to limit Total Operating Expenses",
+      "nullable": false
+    },
+
+    "expense_cap.expense_cap_pct": {
+      "expected": "3.00",
+      "source_section": "Expense Limitation Agreement",
+      "source_quote": "exceed 3.00% of the Fund's average daily net assets",
+      "nullable": false,
+      "notes": "Changed from cap_rate to expense_cap_pct to match extraction schema"
+    },
+
+    "repurchase_terms.repurchase_frequency": {
+      "expected": "quarterly",
+      "source_section": "Share Repurchase Program",
+      "source_quote": "offer to repurchase Shares from Shareholders on a quarterly basis",
+      "nullable": false
+    },
+
+    "repurchase_terms.repurchase_amount_pct": {
+      "expected": "5",
+      "source_section": "Share Repurchase Program",
+      "source_quote": "in an amount expected to be approximately 5% of the Fund's net asset value",
+      "nullable": false
+    },
+
+    "repurchase_terms.repurchase_basis": {
+      "expected": "nav",
+      "source_section": "Share Repurchase Program",
+      "source_quote": "5% of the Fund's net asset value",
+      "nullable": false,
+      "notes": "Changed from net_assets to nav for consistency with evaluator synonyms"
+    },
+
+    "repurchase_terms.repurchase_percentage_min": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Uses repurchase_amount_pct instead"
+    },
+
+    "repurchase_terms.repurchase_percentage_max": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Uses repurchase_amount_pct instead"
+    },
+
+    "repurchase_terms.lock_up_period_years": {
+      "expected": 1,
+      "source_section": "Share Repurchase Program",
+      "source_quote": "Shares from a Shareholder which were held for less than one year",
+      "nullable": false,
+      "notes": "CORRECTED: Document clearly states 1-year holding period with early repurchase fee"
+    },
+
+    "repurchase_terms.early_repurchase_fee_pct": {
+      "expected": "2.00",
+      "source_section": "Share Repurchase Program",
+      "source_quote": "A 2.00% early repurchase fee will be charged by the Fund with respect to any repurchase of Shares from a Shareholder at any time prior to the day immediately preceding the one-year anniversary",
+      "nullable": false,
+      "notes": "CORRECTED: Document clearly states 2.00% early repurchase fee for shares held < 1 year"
+    },
+
+    "leverage_limits.uses_leverage": {
+      "expected": true,
+      "source_section": "Borrowings/Leverage",
+      "source_quote": "The Fund may borrow money in connection with its investment activities",
+      "nullable": false
+    },
+
+    "leverage_limits.max_leverage_pct": {
+      "expected": "33",
+      "source_section": "Borrowings/Leverage",
+      "source_quote": "asset coverage requirement of 300% of its indebtedness",
+      "nullable": false,
+      "notes": "33% = 300% asset coverage requirement under 1940 Act (can borrow up to 1/3 of assets)"
+    },
+
+    "leverage_limits.leverage_basis": {
+      "expected": "asset_coverage",
+      "source_section": "Borrowings/Leverage",
+      "source_quote": "asset coverage requirement of 300%",
+      "nullable": false
+    },
+
+    "distribution_terms.distribution_frequency": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Distribution frequency not explicitly stated - at least annually for RIC compliance"
+    },
+
+    "distribution_terms.default_distribution_policy": {
+      "expected": "DRIP",
+      "source_section": "Dividend Reinvestment Plan",
+      "source_quote": "The Fund will operate under a dividend reinvestment plan (DRP)",
+      "nullable": false
+    },
+
+    "allocation_targets.secondary_funds_min_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Not specified in document"
+    },
+
+    "allocation_targets.secondary_funds_max_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Not specified in document"
+    },
+
+    "allocation_targets.direct_investments_min_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Not specified in document"
+    },
+
+    "allocation_targets.direct_investments_max_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Not specified in document"
+    },
+
+    "allocation_targets.secondary_investments_min_pct": {
+      "expected": "80",
+      "source_section": "Investment Objective and Strategies",
+      "source_quote": "the Fund will invest at least 80% of its net assets (plus the amount of any borrowings for investment purposes) in Secondary Investments",
+      "nullable": false
+    },
+
+    "concentration_limits.max_single_asset_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Not specified in document"
+    },
+
+    "concentration_limits.max_single_fund_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Not specified in document"
+    },
+
+    "concentration_limits.max_single_sector_pct": {
+      "expected": null,
+      "nullable": true,
+      "notes": "Not specified in document"
+    }
+  }
+}

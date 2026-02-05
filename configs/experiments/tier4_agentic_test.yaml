@@ -1,0 +1,51 @@
+# Tier 4 Agentic Extraction Test
+# Tests the unconstrained ReAct-style agent for document extraction
+
+experiment:
+  name: "Tier 4 Agentic Test"
+  description: "Test Tier 4 unconstrained agent extraction on a single fund"
+  hypothesis: "Tier 4 agent can iteratively search and extract fields that require document exploration"
+
+# Use GPT-4o for better reasoning (can switch to gpt-4o-mini for cheaper testing)
+extraction:
+  model: "gpt-4o"
+  provider: "openai"
+  delay_between_calls: 0.5  # Rate limiting
+
+# Enable only Tier 4
+tiers:
+  # Disable all other tiers
+  tier0_enabled: false
+  tier1_enabled: false
+  tier2_enabled: false
+  tier3_enabled: false
+
+  # Enable Tier 4 only mode
+  tier4:
+    enabled: true
+    only: true
+    model: "gpt-4o"
+    max_iterations: 12
+    timeout_seconds: 180
+    confidence_threshold: 0.7
+    # Test with a subset of fields first
+    fields_to_extract:
+      - "incentive_fee_pct"
+      - "has_incentive_fee"
+      - "repurchase_frequency"
+
+# Full observability
+observability:
+  enabled: true
+  trace_level: "full"
+  save_llm_responses: true
+
+# Test on all funds with ground truth
+validation:
+  funds:
+    - "Blackstone Private Multi-Asset Credit and Income Fund"
+    - "Blue Owl Alternative Credit Fund"
+    - "Carlyle AlpInvest Private Markets Secondaries Fund"
+    - "Hamilton Lane Private Assets Fund"
+    - "StepStone Private Markets"
+  ground_truth_dir: "configs/ground_truth"

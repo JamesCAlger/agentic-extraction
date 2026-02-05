@@ -1,0 +1,2306 @@
+{
+  "run_id": "exp_20260116_174635_ensemble_t4_scenario2",
+  "config_hash": "dce295261819",
+  "config": {
+    "extraction": {
+      "model": "gpt-4o-mini",
+      "provider": "openai",
+      "max_chunk_tokens": 1000,
+      "overlap_tokens": 100,
+      "max_retries": 2,
+      "extraction_mode": "combined",
+      "use_examples": true,
+      "max_examples": 3,
+      "delay_between_calls": 1.0,
+      "requests_per_minute": 40
+    },
+    "tiers": {
+      "tier0_enabled": true,
+      "tier1_enabled": false,
+      "tier2_enabled": false,
+      "tier2_max_chars": 12000,
+      "tier3_enabled": true,
+      "tier3_only": true,
+      "tier3_top_k_sections": 10,
+      "tier3_max_chunks_per_section": 10,
+      "tier3_keyword_threshold": 0,
+      "tier4": {
+        "enabled": false,
+        "only": false,
+        "model": "gpt-4o",
+        "max_iterations": 12,
+        "timeout_seconds": 180,
+        "confidence_threshold": 0.8,
+        "fields_to_extract": []
+      },
+      "reranker": {
+        "enabled": true,
+        "model": "rerank-v3.5",
+        "first_pass_n": 200,
+        "top_k": 10,
+        "score_threshold": 0.2
+      },
+      "embedding_retrieval": {
+        "enabled": false,
+        "provider": "openai",
+        "model": "text-embedding-3-small",
+        "dimensions": null,
+        "top_k": 10,
+        "prepend_context": false,
+        "cache_embeddings": true
+      },
+      "docvqa_enabled": false,
+      "docvqa_only": false,
+      "tier3_docvqa": false,
+      "sequential_docvqa": false,
+      "tier3_sequential_docvqa": false,
+      "hybrid_docvqa_tier3": false,
+      "per_datapoint_tier3": false,
+      "per_datapoint_tier3_style": false,
+      "hybrid_boolean_tier3": false,
+      "dense_retrieval": false,
+      "hybrid_retrieval": false
+    },
+    "grounding": {
+      "enabled": true,
+      "strict_mode": false,
+      "min_score": 0.0
+    },
+    "confidence": {
+      "enabled": false,
+      "require_grounding": true,
+      "high_threshold": 0.7,
+      "low_threshold": 0.4,
+      "weight_llm_confidence": 0.25,
+      "weight_grounding": 0.35,
+      "weight_evidence": 0.2,
+      "weight_retrieval": 0.2
+    },
+    "ensemble": {
+      "enabled": true,
+      "methods": [
+        "t3_k10",
+        "reranker"
+      ],
+      "min_confidence_gap": 0.15,
+      "agreement_boost": 0.1,
+      "default_method": "t3_k10",
+      "t3_top_k_sections": 10,
+      "reranker_first_pass_n": 200,
+      "reranker_top_k": 10,
+      "escalate_to_t4": true,
+      "escalate_on_disagreement": true,
+      "escalate_on_both_null": true,
+      "t4_model": "gpt-4o",
+      "t4_max_iterations": 12,
+      "t4_timeout_seconds": 180
+    },
+    "observability": {
+      "enabled": true,
+      "trace_level": "full",
+      "save_llm_responses": true,
+      "output_dir": null
+    },
+    "validation": {
+      "funds": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "ground_truth_dir": "configs/ground_truth"
+    },
+    "cost": {
+      "input_token_cost": 0.00015,
+      "output_token_cost": 0.0006
+    },
+    "experiment": {
+      "name": "ensemble_t4_scenario2",
+      "description": "Ensemble T3+Reranker with T4 escalation on disagreement and both-null",
+      "hypothesis": "T4 escalation on nulls recovers 80% of missed values, achieving 90%+ accuracy"
+    },
+    "field_overrides": {
+      "share_classes": {
+        "max_chunk_tokens": 10000
+      },
+      "allocation_targets": {
+        "extraction_mode": "per_section"
+      }
+    }
+  },
+  "started_at": "2026-01-16T17:46:35.884692",
+  "completed_at": "2026-01-16T18:12:12.781170",
+  "fund_results": {
+    "Blackstone Private Multi-Asset Credit and Income Fund": {
+      "fund_name": "Blackstone Private Multi-Asset Credit and Income Fund",
+      "cik": "0002032432",
+      "filing_path": "data/raw/0002032432/2025-03-05_0001193125-25-047335",
+      "extraction": {
+        "filing_id": "0002032432_bb6a1dbe2961",
+        "cik": "0002032432",
+        "fund_name": "Blackstone Private Multi-Asset Credit and Income Fund",
+        "fund_type": "interval_fund",
+        "fund_type_flags": {
+          "RegisteredClosedEndFundFlag": true,
+          "BusinessDevelopmentCompanyFlag": false,
+          "IntervalFundFlag": true,
+          "PrimaryShelfFlag": false,
+          "PrimaryShelfQualifiedFlag": false,
+          "NewCefOrBdcRegistrantFlag": true
+        },
+        "xbrl_fees": {},
+        "fund_metadata": null,
+        "leverage_limits": {
+          "uses_leverage": true,
+          "max_leverage_pct": 50,
+          "leverage_basis": "debt_to_equity"
+        },
+        "distribution_terms": {
+          "distribution_frequency": "monthly",
+          "default_distribution_policy": "reinvested"
+        },
+        "incentive_fee": {
+          "has_incentive_fee": true,
+          "incentive_fee_pct": "12.5",
+          "has_catch_up": true,
+          "fee_basis": "net_investment_income",
+          "crystallization_frequency": "quarterly",
+          "evidence": "the incentive fee, if any, is based on income, whereby we will pay the Adviser quarterly in arrears 12.5% of our Pre-Incentive Fee Net Investment Income Returns... subject to a 5% annualized hurdle rate, with a full catch-up.",
+          "hurdle_rate_pct": "5.0",
+          "hurdle_rate_quarterly": "1.25",
+          "hurdle_rate_as_stated": "5",
+          "hurdle_rate_frequency": "annual",
+          "high_water_mark": "null"
+        },
+        "expense_cap": {
+          "has_expense_cap": true,
+          "expense_cap_pct": "0.50",
+          "evidence": "The Adviser has contractually agreed to waive the management fee in full for a six-month period beginning from the date the Fund completes its first sale of shares in its public offering."
+        },
+        "repurchase_terms": {
+          "repurchase_frequency": "quarterly",
+          "repurchase_amount_pct": "5%",
+          "repurchase_basis": "number_of_shares",
+          "lock_up_period_years": 1,
+          "early_repurchase_fee_pct": "2.00",
+          "evidence": "The Fund is an \u201cinterval fund,\u201d a type of fund which, in order to provide liquidity to shareholders, has adopted a fundamental investment policy to make quarterly offers to repurchase between 5% and 25% of its outstanding Common Shares at net asset value."
+        },
+        "allocation_targets": {
+          "evidence": "We will invest directly or indirectly at least 80% of our assets in private credit investments."
+        },
+        "concentration_limits": {
+          "evidence": "the Fund has adopted a fundamental investment policy to make quarterly offers to repurchase between 5% and 25% of its outstanding Common Shares at net asset value."
+        },
+        "share_classes": {
+          "share_classes": [
+            {
+              "class_name": "Class S",
+              "minimum_initial_investment": 2500,
+              "minimum_additional_investment": 500,
+              "sales_load_pct": "3.5",
+              "distribution_fee_pct": "0.75"
+            },
+            {
+              "class_name": "Class D",
+              "minimum_initial_investment": 2500,
+              "minimum_additional_investment": 500,
+              "sales_load_pct": "1.5",
+              "distribution_fee_pct": "0.25"
+            },
+            {
+              "class_name": "Class I",
+              "minimum_initial_investment": 1000000,
+              "minimum_additional_investment": 500,
+              "sales_load_pct": "0",
+              "distribution_fee_pct": "0"
+            },
+            {
+              "class_name": "Class I Advisory",
+              "minimum_initial_investment": 1000000,
+              "minimum_additional_investment": 500,
+              "sales_load_pct": "0",
+              "distribution_fee_pct": "0"
+            }
+          ],
+          "evidence": "The minimum initial investment for Class I or Class I Advisory shares is $1,000,000, unless waived by the Intermediary Manager. No upfront sales load will be paid with respect to Class S shares, Class D shares, Class I shares or Class I Advisory shares; however, selling agents limit such charges to a 3.5% cap on NAV for Class S shares and a 1.5% cap on NAV for Class D shares. The following table shows the shareholder servicing and/or distribution fees we pay the Intermediary Manager with respect to the Class S, Class D, Class I and Class I Advisory shares: Class S shares 0.75%, Class D shares 0.25%, Class I shares \u2014, Class I Advisory shares \u2014."
+        },
+        "chunks_processed": 0,
+        "extraction_errors": [],
+        "grounding": {
+          "total_fields": 9,
+          "grounded_fields": 9,
+          "grounding_rate": 1.0,
+          "field_results": {
+            "fund_type_flags": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "leverage_limits": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "distribution_terms": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "incentive_fee": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "expense_cap": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "repurchase_terms": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "allocation_targets": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "concentration_limits": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "share_classes": {
+              "is_grounded": true,
+              "grounding_score": 1.0,
+              "issues": [],
+              "verified_values": [
+                "class_name: Class S",
+                "Class S.sales_load_pct: 3.5%",
+                "Class S.minimum: $2,500",
+                "class_name: Class D",
+                "Class D.sales_load_pct: 1.5%",
+                "Class D.minimum: $2,500",
+                "class_name: Class I",
+                "Class I.sales_load_pct: 0%",
+                "Class I.minimum: $1,000,000",
+                "class_name: Class I Advisory",
+                "Class I Advisory.sales_load_pct: 0%",
+                "Class I Advisory.minimum: $1,000,000"
+              ],
+              "unverified_values": []
+            }
+          },
+          "overall_issues": []
+        },
+        "extraction_trace": {
+          "summary": {
+            "filing_id": "0002032432_0001193125-25-047335",
+            "fund_name": "Blackstone Private Multi-Asset Credit and Income Fund",
+            "total_fields": 9,
+            "flagged_for_review": 0,
+            "flagged_pct": "0.0%",
+            "by_confidence": {
+              "explicit": 0,
+              "inferred": 8,
+              "not_found": 1
+            },
+            "by_source_layer": {
+              "grounding": 8
+            },
+            "duration_seconds": 52.146213
+          },
+          "trace_available": true
+        },
+        "leverage": {
+          "uses_leverage": "true"
+        },
+        "distribution": {
+          "distribution_frequency": "monthly"
+        },
+        "ensemble_metadata": {
+          "extraction_mode": "ensemble_t4",
+          "accepted_fields": [
+            "incentive_fee.has_incentive_fee",
+            "incentive_fee.incentive_fee_pct",
+            "incentive_fee.hurdle_rate_pct",
+            "incentive_fee.has_catch_up",
+            "expense_cap.has_expense_cap",
+            "expense_cap.expense_cap_pct",
+            "repurchase_terms.repurchase_frequency",
+            "repurchase_terms.repurchase_amount_pct",
+            "repurchase_terms.lock_up_period_years",
+            "repurchase_terms.early_repurchase_fee_pct",
+            "fund_type"
+          ],
+          "escalated_fields": [
+            "incentive_fee.high_water_mark",
+            "leverage.uses_leverage",
+            "leverage.max_leverage_pct",
+            "distribution.distribution_frequency"
+          ],
+          "t4_successes": [
+            "incentive_fee.high_water_mark",
+            "leverage.uses_leverage",
+            "distribution.distribution_frequency"
+          ]
+        }
+      },
+      "trace": {
+        "extraction_mode": "ensemble_t4",
+        "config": {
+          "t3_top_k": 10,
+          "reranker_first_pass_n": 200,
+          "reranker_top_k": 10,
+          "t4_model": "gpt-4o",
+          "t4_max_iterations": 12,
+          "escalate_on_disagreement": true,
+          "escalate_on_both_null": true
+        },
+        "statistics": {
+          "total_fields": 15,
+          "accepted_count": 11,
+          "escalated_count": 4,
+          "t4_success_count": 3,
+          "agreement_rate": 0.7333333333333333,
+          "escalation_rate": 0.26666666666666666,
+          "t4_success_rate": 0.75
+        },
+        "timing": {
+          "t3_duration_seconds": 52.96087574958801,
+          "reranker_duration_seconds": 48.730548620224,
+          "t4_duration_seconds": 113.88361358642578,
+          "total_duration_seconds": 215.57554149627686
+        },
+        "field_decisions": {
+          "incentive_fee.has_incentive_fee": {
+            "t3_value": true,
+            "reranker_value": true,
+            "final_value": true,
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "incentive_fee.incentive_fee_pct": {
+            "t3_value": "12.5",
+            "reranker_value": "12.5",
+            "final_value": "12.5",
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "incentive_fee.hurdle_rate_pct": {
+            "t3_value": "5.0",
+            "reranker_value": "5.0",
+            "final_value": "5.0",
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "incentive_fee.high_water_mark": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": "null",
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "t4",
+            "t4_success": true,
+            "t4_confidence": 0.85
+          },
+          "incentive_fee.has_catch_up": {
+            "t3_value": true,
+            "reranker_value": true,
+            "final_value": true,
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "expense_cap.has_expense_cap": {
+            "t3_value": true,
+            "reranker_value": true,
+            "final_value": true,
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "expense_cap.expense_cap_pct": {
+            "t3_value": "0.50",
+            "reranker_value": "0.50",
+            "final_value": "0.50",
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "repurchase_terms.repurchase_frequency": {
+            "t3_value": "quarterly",
+            "reranker_value": "quarterly",
+            "final_value": "quarterly",
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "repurchase_terms.repurchase_amount_pct": {
+            "t3_value": "5%",
+            "reranker_value": "5%",
+            "final_value": "5%",
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "repurchase_terms.lock_up_period_years": {
+            "t3_value": 1,
+            "reranker_value": 1,
+            "final_value": 1,
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "repurchase_terms.early_repurchase_fee_pct": {
+            "t3_value": "2.00",
+            "reranker_value": "2.0",
+            "final_value": "2.00",
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "leverage.uses_leverage": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": "true",
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "t4",
+            "t4_success": true,
+            "t4_confidence": 1.0
+          },
+          "leverage.max_leverage_pct": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": null,
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "not_found",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "distribution.distribution_frequency": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": "monthly",
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "t4",
+            "t4_success": true,
+            "t4_confidence": 0.85
+          },
+          "fund_type": {
+            "t3_value": "interval_fund",
+            "reranker_value": "interval_fund",
+            "final_value": "interval_fund",
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          }
+        }
+      },
+      "stats": {
+        "sections": 32,
+        "chunks": 194,
+        "tokens": 58715
+      },
+      "error": null,
+      "duration_seconds": 225.7787766456604
+    },
+    "StepStone Private Markets": {
+      "fund_name": "StepStone Private Markets",
+      "cik": "0001789470",
+      "filing_path": "data/raw/0001789470/2025-08-19_0001193125-25-183488",
+      "extraction": {
+        "filing_id": "0001789470_040aaca284d9",
+        "cik": "0001789470",
+        "fund_name": "StepStone Private Markets",
+        "fund_type": "tender_offer_fund",
+        "fund_type_flags": {
+          "RegisteredClosedEndFundFlag": true,
+          "BusinessDevelopmentCompanyFlag": false,
+          "IntervalFundFlag": false,
+          "PrimaryShelfFlag": false,
+          "PrimaryShelfQualifiedFlag": false,
+          "NewCefOrBdcRegistrantFlag": false
+        },
+        "xbrl_fees": {},
+        "fund_metadata": null,
+        "leverage_limits": {
+          "uses_leverage": true,
+          "max_leverage_pct": 33,
+          "leverage_basis": "total_assets"
+        },
+        "distribution_terms": {
+          "distribution_frequency": "annual",
+          "default_distribution_policy": "reinvested"
+        },
+        "incentive_fee": {
+          "has_incentive_fee": "false",
+          "evidence": "No specific incentive fee information provided."
+        },
+        "expense_cap": {
+          "has_expense_cap": "true",
+          "expense_cap_pct": "1.40",
+          "evidence": "the Fund pays the Adviser a monthly investment management fee ('Management Fee') equal to 1.40% on an annualized basis of the Fund\u2019s daily net assets"
+        },
+        "repurchase_terms": {
+          "repurchase_frequency": "quarterly",
+          "repurchase_amount_pct": "5%",
+          "repurchase_basis": "number_of_shares",
+          "evidence": "The Advisers intend to seek the Board\u2019s approval to offer a quarterly share repurchase program where the total amount of aggregate repurchases of Shares will be up to 5% of the Fund\u2019s outstanding Shares per quarter."
+        },
+        "allocation_targets": {
+          "evidence": "The projected long-term asset allocation targets shown below reflect the Advisers\u2019 current assessment of the appropriate mix of asset classes and investment types."
+        },
+        "concentration_limits": {
+          "evidence": ""
+        },
+        "share_classes": {
+          "share_classes": [
+            {
+              "class_name": "Class S",
+              "minimum_initial_investment": 5000,
+              "minimum_additional_investment": 5000,
+              "sales_load_pct": "3.5",
+              "distribution_fee_pct": "0.85"
+            },
+            {
+              "class_name": "Class D",
+              "minimum_initial_investment": 5000,
+              "minimum_additional_investment": 5000,
+              "sales_load_pct": "0",
+              "distribution_fee_pct": "0.25"
+            },
+            {
+              "class_name": "Class I",
+              "minimum_initial_investment": 1000000,
+              "minimum_additional_investment": 100000,
+              "sales_load_pct": "0",
+              "distribution_fee_pct": "0"
+            }
+          ],
+          "evidence": "The minimum initial investment is $5,000 for Class S Shares and Class D Shares. The minimum initial investment for Class I Shares is $1,000,000. Investors purchasing Class S Shares will be charged a sales load of 3.50%. Class I Shares are not subject to any distribution and/or shareholder servicing fee."
+        },
+        "chunks_processed": 0,
+        "extraction_errors": [],
+        "grounding": {
+          "total_fields": 9,
+          "grounded_fields": 9,
+          "grounding_rate": 1.0,
+          "field_results": {
+            "fund_type_flags": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "leverage_limits": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "distribution_terms": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "incentive_fee": {
+              "is_grounded": true,
+              "grounding_score": 1.0,
+              "issues": [],
+              "verified_values": [
+                "no_incentive_fee: confirmed"
+              ],
+              "unverified_values": []
+            },
+            "expense_cap": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "repurchase_terms": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "allocation_targets": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "concentration_limits": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "share_classes": {
+              "is_grounded": true,
+              "grounding_score": 1.0,
+              "issues": [],
+              "verified_values": [
+                "class_name: Class S",
+                "Class S.sales_load_pct: 3.5%",
+                "Class S.minimum: $5,000",
+                "class_name: Class D",
+                "Class D.sales_load_pct: 0%",
+                "Class D.minimum: $5,000",
+                "class_name: Class I",
+                "Class I.sales_load_pct: 0%",
+                "Class I.minimum: $1,000,000"
+              ],
+              "unverified_values": []
+            }
+          },
+          "overall_issues": []
+        },
+        "extraction_trace": {
+          "summary": {
+            "filing_id": "0001789470_0001193125-25-183488",
+            "fund_name": "StepStone Private Markets",
+            "total_fields": 9,
+            "flagged_for_review": 0,
+            "flagged_pct": "0.0%",
+            "by_confidence": {
+              "explicit": 0,
+              "inferred": 8,
+              "not_found": 1
+            },
+            "by_source_layer": {
+              "grounding": 8
+            },
+            "duration_seconds": 44.062882
+          },
+          "trace_available": true
+        },
+        "leverage": {
+          "uses_leverage": "true"
+        },
+        "ensemble_metadata": {
+          "extraction_mode": "ensemble_t4",
+          "accepted_fields": [
+            "repurchase_terms.repurchase_frequency",
+            "repurchase_terms.repurchase_amount_pct",
+            "fund_type"
+          ],
+          "escalated_fields": [
+            "incentive_fee.has_incentive_fee",
+            "incentive_fee.incentive_fee_pct",
+            "incentive_fee.hurdle_rate_pct",
+            "incentive_fee.high_water_mark",
+            "incentive_fee.has_catch_up",
+            "expense_cap.has_expense_cap",
+            "expense_cap.expense_cap_pct",
+            "repurchase_terms.lock_up_period_years",
+            "repurchase_terms.early_repurchase_fee_pct",
+            "leverage.uses_leverage",
+            "leverage.max_leverage_pct",
+            "distribution.distribution_frequency"
+          ],
+          "t4_successes": [
+            "incentive_fee.has_incentive_fee",
+            "expense_cap.has_expense_cap",
+            "leverage.uses_leverage"
+          ]
+        }
+      },
+      "trace": {
+        "extraction_mode": "ensemble_t4",
+        "config": {
+          "t3_top_k": 10,
+          "reranker_first_pass_n": 200,
+          "reranker_top_k": 10,
+          "t4_model": "gpt-4o",
+          "t4_max_iterations": 12,
+          "escalate_on_disagreement": true,
+          "escalate_on_both_null": true
+        },
+        "statistics": {
+          "total_fields": 15,
+          "accepted_count": 3,
+          "escalated_count": 12,
+          "t4_success_count": 3,
+          "agreement_rate": 0.2,
+          "escalation_rate": 0.8,
+          "t4_success_rate": 0.25
+        },
+        "timing": {
+          "t3_duration_seconds": 44.5292387008667,
+          "reranker_duration_seconds": 35.47675800323486,
+          "t4_duration_seconds": 330.0720000267029,
+          "total_duration_seconds": 410.0785655975342
+        },
+        "field_decisions": {
+          "incentive_fee.has_incentive_fee": {
+            "t3_value": false,
+            "reranker_value": null,
+            "final_value": "false",
+            "values_agree": false,
+            "both_null": false,
+            "escalated": true,
+            "escalation_reason": "disagreement",
+            "source": "t4",
+            "t4_success": true,
+            "t4_confidence": 1.0
+          },
+          "incentive_fee.incentive_fee_pct": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": null,
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "not_found",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "incentive_fee.hurdle_rate_pct": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": null,
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "not_found",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "incentive_fee.high_water_mark": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": null,
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "not_found",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "incentive_fee.has_catch_up": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": null,
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "not_found",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "expense_cap.has_expense_cap": {
+            "t3_value": true,
+            "reranker_value": null,
+            "final_value": "true",
+            "values_agree": false,
+            "both_null": false,
+            "escalated": true,
+            "escalation_reason": "disagreement",
+            "source": "t4",
+            "t4_success": true,
+            "t4_confidence": 1.0
+          },
+          "expense_cap.expense_cap_pct": {
+            "t3_value": "1.40",
+            "reranker_value": null,
+            "final_value": "1.40",
+            "values_agree": false,
+            "both_null": false,
+            "escalated": true,
+            "escalation_reason": "disagreement",
+            "source": "t3_fallback",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "repurchase_terms.repurchase_frequency": {
+            "t3_value": "quarterly",
+            "reranker_value": "quarterly",
+            "final_value": "quarterly",
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "repurchase_terms.repurchase_amount_pct": {
+            "t3_value": "5%",
+            "reranker_value": "5%",
+            "final_value": "5%",
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "repurchase_terms.lock_up_period_years": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": null,
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "not_found",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "repurchase_terms.early_repurchase_fee_pct": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": null,
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "not_found",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "leverage.uses_leverage": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": "true",
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "t4",
+            "t4_success": true,
+            "t4_confidence": 0.85
+          },
+          "leverage.max_leverage_pct": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": null,
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "not_found",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "distribution.distribution_frequency": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": null,
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "not_found",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "fund_type": {
+            "t3_value": "tender_offer_fund",
+            "reranker_value": "tender_offer_fund",
+            "final_value": "tender_offer_fund",
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          }
+        }
+      },
+      "stats": {
+        "sections": 47,
+        "chunks": 220,
+        "tokens": 27212
+      },
+      "error": null,
+      "duration_seconds": 416.08003759384155
+    },
+    "Hamilton Lane Private Assets Fund": {
+      "fund_name": "Hamilton Lane Private Assets Fund",
+      "cik": "0001803491",
+      "filing_path": "data/raw/0001803491/2025-07-29_0001213900-25-068734",
+      "extraction": {
+        "filing_id": "0001803491_74e43a4bc1b3",
+        "cik": "0001803491",
+        "fund_name": "Hamilton Lane Private Assets Fund",
+        "fund_type": "tender_offer_fund",
+        "fund_type_flags": {
+          "RegisteredClosedEndFundFlag": true,
+          "BusinessDevelopmentCompanyFlag": false,
+          "IntervalFundFlag": false,
+          "PrimaryShelfFlag": false,
+          "PrimaryShelfQualifiedFlag": false,
+          "NewCefOrBdcRegistrantFlag": false
+        },
+        "xbrl_fees": {},
+        "fund_metadata": null,
+        "leverage_limits": {
+          "uses_leverage": true,
+          "max_leverage_pct": 33,
+          "leverage_basis": "asset_coverage",
+          "credit_facility_size": 250
+        },
+        "distribution_terms": {
+          "default_distribution_policy": "reinvested"
+        },
+        "incentive_fee": {
+          "has_incentive_fee": true,
+          "incentive_fee_pct": "1.00",
+          "fee_basis": "net_profits",
+          "evidence": "The Incentive Fee listed is based on an estimate that assumes the hypothetical annual return of 10% for the Fund."
+        },
+        "expense_cap": {
+          "has_expense_cap": "true",
+          "evidence": "Fee Waivers and/or Expense Reimbursements (9) 0.00 % 0.00 % 0.00 %",
+          "expense_cap_pct": "1.45% / 0.75% / 1.00%"
+        },
+        "repurchase_terms": {
+          "repurchase_frequency": "quarterly",
+          "repurchase_amount_pct": "5%",
+          "repurchase_basis": "nav",
+          "lock_up_period_years": 1,
+          "early_repurchase_fee_pct": "2.00",
+          "evidence": "The Adviser currently anticipates recommending to the Board that, under normal market circumstances, the Fund conducts repurchase offers of no more than 5% of the Fund\u2019s net assets each quarter."
+        },
+        "allocation_targets": {
+          "evidence": "The Fund intends to invest and/or make capital commitments of at least 80% of its net assets in 'private assets'."
+        },
+        "concentration_limits": {
+          "evidence": "Under normal circumstances, the Fund intends to invest and/or make capital commitments of at least 80% of its net assets (plus the amount of any borrowings for investment purposes) in 'private assets'. This policy is not fundamental and may be changed by the Fund\u2019s Board upon 60 days\u2019 prior written notice to Shareholders."
+        },
+        "share_classes": {
+          "share_classes": [
+            {
+              "class_name": "Class D",
+              "minimum_initial_investment": 25000,
+              "minimum_additional_investment": null,
+              "sales_load_pct": "0",
+              "distribution_fee_pct": "0.25"
+            },
+            {
+              "class_name": "Class I",
+              "minimum_initial_investment": 1000000,
+              "minimum_additional_investment": null,
+              "sales_load_pct": "0",
+              "distribution_fee_pct": "0"
+            },
+            {
+              "class_name": "Class R",
+              "minimum_initial_investment": null,
+              "minimum_additional_investment": null,
+              "sales_load_pct": "3.5",
+              "distribution_fee_pct": "0.70"
+            }
+          ],
+          "evidence": "The minimum initial investment in the Fund for Class D Shares and Class R Shares is $25,000, and the minimum initial investment for Class I Shares is $1,000,000. Class I Shares and Class D Shares are each not subject to a sales charge; however, investors purchasing Shares through a financial intermediary could be required to pay transaction or other fees on purchases and sales of Class I or Class D Shares to their financial intermediary in such amounts as their financial intermediary may determine. Class R Shares may be charged a sales charge of up to 3.50%. Maximum Sales Load Imposed on Purchases (as a percentage of offering price) 3.50% None None. Distribution and Servicing Fees for Class D Shares is 0.25% and for Class I is 0.00%."
+        },
+        "chunks_processed": 0,
+        "extraction_errors": [],
+        "grounding": {
+          "total_fields": 9,
+          "grounded_fields": 9,
+          "grounding_rate": 1.0,
+          "field_results": {
+            "fund_type_flags": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "leverage_limits": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "distribution_terms": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "incentive_fee": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "expense_cap": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "repurchase_terms": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "allocation_targets": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "concentration_limits": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "share_classes": {
+              "is_grounded": true,
+              "grounding_score": 1.0,
+              "issues": [],
+              "verified_values": [
+                "class_name: Class D",
+                "Class D.sales_load_pct: 0%",
+                "Class D.minimum: $25,000",
+                "class_name: Class I",
+                "Class I.sales_load_pct: 0%",
+                "Class I.minimum: $1,000,000",
+                "class_name: Class R",
+                "Class R.sales_load_pct: 3.5%"
+              ],
+              "unverified_values": []
+            }
+          },
+          "overall_issues": []
+        },
+        "extraction_trace": {
+          "summary": {
+            "filing_id": "0001803491_0001213900-25-068734",
+            "fund_name": "Hamilton Lane Private Assets Fund",
+            "total_fields": 9,
+            "flagged_for_review": 0,
+            "flagged_pct": "0.0%",
+            "by_confidence": {
+              "explicit": 0,
+              "inferred": 8,
+              "not_found": 1
+            },
+            "by_source_layer": {
+              "grounding": 8
+            },
+            "duration_seconds": 48.17695
+          },
+          "trace_available": true
+        },
+        "leverage": {
+          "uses_leverage": "true"
+        },
+        "ensemble_metadata": {
+          "extraction_mode": "ensemble_t4",
+          "accepted_fields": [
+            "incentive_fee.has_incentive_fee",
+            "incentive_fee.incentive_fee_pct",
+            "repurchase_terms.repurchase_frequency",
+            "repurchase_terms.repurchase_amount_pct",
+            "repurchase_terms.lock_up_period_years",
+            "repurchase_terms.early_repurchase_fee_pct",
+            "fund_type"
+          ],
+          "escalated_fields": [
+            "incentive_fee.hurdle_rate_pct",
+            "incentive_fee.high_water_mark",
+            "incentive_fee.has_catch_up",
+            "expense_cap.has_expense_cap",
+            "expense_cap.expense_cap_pct",
+            "leverage.uses_leverage",
+            "leverage.max_leverage_pct",
+            "distribution.distribution_frequency"
+          ],
+          "t4_successes": [
+            "expense_cap.has_expense_cap",
+            "leverage.uses_leverage"
+          ]
+        }
+      },
+      "trace": {
+        "extraction_mode": "ensemble_t4",
+        "config": {
+          "t3_top_k": 10,
+          "reranker_first_pass_n": 200,
+          "reranker_top_k": 10,
+          "t4_model": "gpt-4o",
+          "t4_max_iterations": 12,
+          "escalate_on_disagreement": true,
+          "escalate_on_both_null": true
+        },
+        "statistics": {
+          "total_fields": 15,
+          "accepted_count": 7,
+          "escalated_count": 8,
+          "t4_success_count": 2,
+          "agreement_rate": 0.4666666666666667,
+          "escalation_rate": 0.5333333333333333,
+          "t4_success_rate": 0.25
+        },
+        "timing": {
+          "t3_duration_seconds": 48.50001239776611,
+          "reranker_duration_seconds": 46.347975730895996,
+          "t4_duration_seconds": 224.45665311813354,
+          "total_duration_seconds": 319.3051474094391
+        },
+        "field_decisions": {
+          "incentive_fee.has_incentive_fee": {
+            "t3_value": true,
+            "reranker_value": true,
+            "final_value": true,
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "incentive_fee.incentive_fee_pct": {
+            "t3_value": "1.00",
+            "reranker_value": "1.00",
+            "final_value": "1.00",
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "incentive_fee.hurdle_rate_pct": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": null,
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "not_found",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "incentive_fee.high_water_mark": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": null,
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "not_found",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "incentive_fee.has_catch_up": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": null,
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "not_found",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "expense_cap.has_expense_cap": {
+            "t3_value": false,
+            "reranker_value": true,
+            "final_value": "true",
+            "values_agree": false,
+            "both_null": false,
+            "escalated": true,
+            "escalation_reason": "disagreement",
+            "source": "t4",
+            "t4_success": true,
+            "t4_confidence": 1.0
+          },
+          "expense_cap.expense_cap_pct": {
+            "t3_value": null,
+            "reranker_value": "1.45% / 0.75% / 1.00%",
+            "final_value": "1.45% / 0.75% / 1.00%",
+            "values_agree": false,
+            "both_null": false,
+            "escalated": true,
+            "escalation_reason": "disagreement",
+            "source": "reranker_fallback",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "repurchase_terms.repurchase_frequency": {
+            "t3_value": "quarterly",
+            "reranker_value": "quarterly",
+            "final_value": "quarterly",
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "repurchase_terms.repurchase_amount_pct": {
+            "t3_value": "5%",
+            "reranker_value": "5%",
+            "final_value": "5%",
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "repurchase_terms.lock_up_period_years": {
+            "t3_value": 1,
+            "reranker_value": 1,
+            "final_value": 1,
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "repurchase_terms.early_repurchase_fee_pct": {
+            "t3_value": "2.00",
+            "reranker_value": "2.00",
+            "final_value": "2.00",
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "leverage.uses_leverage": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": "true",
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "t4",
+            "t4_success": true,
+            "t4_confidence": 1.0
+          },
+          "leverage.max_leverage_pct": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": null,
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "not_found",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "distribution.distribution_frequency": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": null,
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "not_found",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "fund_type": {
+            "t3_value": "tender_offer_fund",
+            "reranker_value": "tender_offer_fund",
+            "final_value": "tender_offer_fund",
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          }
+        }
+      },
+      "stats": {
+        "sections": 36,
+        "chunks": 48,
+        "tokens": 14795
+      },
+      "error": null,
+      "duration_seconds": 328.1586105823517
+    },
+    "Blue Owl Alternative Credit Fund": {
+      "fund_name": "Blue Owl Alternative Credit Fund",
+      "cik": "0002059436",
+      "filing_path": "data/raw/0002059436/2025-08-07_0001628280-25-039019",
+      "extraction": {
+        "filing_id": "0002059436_98ce880de477",
+        "cik": "0002059436",
+        "fund_name": "Blue Owl Alternative Credit Fund",
+        "fund_type": "interval_fund",
+        "fund_type_flags": {
+          "RegisteredClosedEndFundFlag": true,
+          "BusinessDevelopmentCompanyFlag": false,
+          "IntervalFundFlag": true,
+          "PrimaryShelfFlag": false,
+          "PrimaryShelfQualifiedFlag": false,
+          "NewCefOrBdcRegistrantFlag": true
+        },
+        "xbrl_fees": {},
+        "fund_metadata": null,
+        "leverage_limits": {
+          "uses_leverage": true,
+          "max_leverage_pct": 25,
+          "leverage_basis": "net_assets"
+        },
+        "distribution_terms": {},
+        "incentive_fee": {
+          "has_incentive_fee": true,
+          "incentive_fee_pct": "10",
+          "has_catch_up": true,
+          "fee_basis": "net_investment_income",
+          "crystallization_frequency": "quarterly",
+          "evidence": "The Fund will pay the Adviser, quarterly in arrears, 10% of the Fund's Pre-Incentive Fee Net Investment Income Returns for each calendar quarter, if any, subject to a 6.00% annualized hurdle rate, with a full catch-up.",
+          "hurdle_rate_pct": "6.0",
+          "hurdle_rate_quarterly": "1.5",
+          "hurdle_rate_as_stated": "6",
+          "hurdle_rate_frequency": "annual"
+        },
+        "expense_cap": {
+          "has_expense_cap": true,
+          "expense_cap_pct": "0.50",
+          "evidence": "the Adviser has agreed to waive fees that it would otherwise be paid, and/or to assume expenses of the Fund, if required to ensure that Specified Expenses for each class of Shares do not exceed 0.50% of the average daily net assets each respective class of Shares on an annual basis."
+        },
+        "repurchase_terms": {
+          "lock_up_period_years": 1,
+          "early_repurchase_fee_pct": "2.00",
+          "evidence": "A 2.00% Early Repurchase Fee payable to the Fund will be charged with respect to any repurchase of a Shareholder's Shares at any time prior to the one-year anniversary of the Shareholder's acquisition of Class S, Class U or Class I Shares, as applicable",
+          "repurchase_frequency": "quarterly",
+          "repurchase_amount_pct": "5%"
+        },
+        "allocation_targets": {
+          "evidence": "Under normal circumstances, the Fund invests at least 80% of its net assets (plus the amount of any borrowings for investment purposes) in Alternative Credit Assets."
+        },
+        "concentration_limits": {
+          "evidence": "Under normal circumstances, the Fund invests at least 80% of its net assets (plus the amount of any borrowings for investment purposes) in Alternative Credit Assets."
+        },
+        "share_classes": {
+          "share_classes": [
+            {
+              "class_name": "Class S",
+              "minimum_initial_investment": null,
+              "minimum_additional_investment": null,
+              "sales_load_pct": "3.5",
+              "distribution_fee_pct": "0.85"
+            },
+            {
+              "class_name": "Class I",
+              "minimum_initial_investment": null,
+              "minimum_additional_investment": null,
+              "sales_load_pct": "0",
+              "distribution_fee_pct": "0"
+            },
+            {
+              "class_name": "Class U",
+              "minimum_initial_investment": null,
+              "minimum_additional_investment": null,
+              "sales_load_pct": "3.0",
+              "distribution_fee_pct": "0.75"
+            }
+          ],
+          "evidence": "No Upfront Sales Load will be paid to the Fund or Dealer Manager with respect to Class S and Class U Shares. ... provided that the selling agents limit such charges to 3.50% of the net offering price per share for each Class S Share and 3.00% of the net offering price per share for each Class U Share. ... Distribution and Servicing Fee None 0.85 % 0.75 %"
+        },
+        "chunks_processed": 0,
+        "extraction_errors": [],
+        "grounding": {
+          "total_fields": 9,
+          "grounded_fields": 9,
+          "grounding_rate": 1.0,
+          "field_results": {
+            "fund_type_flags": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "leverage_limits": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "distribution_terms": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "incentive_fee": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "expense_cap": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "repurchase_terms": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "allocation_targets": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "concentration_limits": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "share_classes": {
+              "is_grounded": true,
+              "grounding_score": 1.0,
+              "issues": [],
+              "verified_values": [
+                "class_name: Class S",
+                "Class S.sales_load_pct: 3.5%",
+                "class_name: Class I",
+                "Class I.sales_load_pct: 0%",
+                "class_name: Class U",
+                "Class U.sales_load_pct: 3.0%"
+              ],
+              "unverified_values": []
+            }
+          },
+          "overall_issues": []
+        },
+        "extraction_trace": {
+          "summary": {
+            "filing_id": "0002059436_0001628280-25-039019",
+            "fund_name": "Blue Owl Alternative Credit Fund",
+            "total_fields": 9,
+            "flagged_for_review": 0,
+            "flagged_pct": "0.0%",
+            "by_confidence": {
+              "explicit": 0,
+              "inferred": 8,
+              "not_found": 1
+            },
+            "by_source_layer": {
+              "grounding": 8
+            },
+            "duration_seconds": 49.23544
+          },
+          "trace_available": true
+        },
+        "leverage": {
+          "uses_leverage": "true"
+        },
+        "ensemble_metadata": {
+          "extraction_mode": "ensemble_t4",
+          "accepted_fields": [
+            "incentive_fee.has_incentive_fee",
+            "incentive_fee.incentive_fee_pct",
+            "incentive_fee.hurdle_rate_pct",
+            "incentive_fee.has_catch_up",
+            "expense_cap.has_expense_cap",
+            "expense_cap.expense_cap_pct",
+            "repurchase_terms.lock_up_period_years",
+            "repurchase_terms.early_repurchase_fee_pct",
+            "fund_type"
+          ],
+          "escalated_fields": [
+            "incentive_fee.high_water_mark",
+            "repurchase_terms.repurchase_frequency",
+            "repurchase_terms.repurchase_amount_pct",
+            "leverage.uses_leverage",
+            "leverage.max_leverage_pct",
+            "distribution.distribution_frequency"
+          ],
+          "t4_successes": [
+            "leverage.uses_leverage"
+          ]
+        }
+      },
+      "trace": {
+        "extraction_mode": "ensemble_t4",
+        "config": {
+          "t3_top_k": 10,
+          "reranker_first_pass_n": 200,
+          "reranker_top_k": 10,
+          "t4_model": "gpt-4o",
+          "t4_max_iterations": 12,
+          "escalate_on_disagreement": true,
+          "escalate_on_both_null": true
+        },
+        "statistics": {
+          "total_fields": 15,
+          "accepted_count": 9,
+          "escalated_count": 6,
+          "t4_success_count": 1,
+          "agreement_rate": 0.6,
+          "escalation_rate": 0.4,
+          "t4_success_rate": 0.16666666666666666
+        },
+        "timing": {
+          "t3_duration_seconds": 49.55726504325867,
+          "reranker_duration_seconds": 41.56259822845459,
+          "t4_duration_seconds": 163.64427661895752,
+          "total_duration_seconds": 254.76461243629456
+        },
+        "field_decisions": {
+          "incentive_fee.has_incentive_fee": {
+            "t3_value": true,
+            "reranker_value": true,
+            "final_value": true,
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "incentive_fee.incentive_fee_pct": {
+            "t3_value": "10",
+            "reranker_value": "10",
+            "final_value": "10",
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "incentive_fee.hurdle_rate_pct": {
+            "t3_value": "6.0",
+            "reranker_value": "6.0",
+            "final_value": "6.0",
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "incentive_fee.high_water_mark": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": null,
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "not_found",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "incentive_fee.has_catch_up": {
+            "t3_value": true,
+            "reranker_value": true,
+            "final_value": true,
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "expense_cap.has_expense_cap": {
+            "t3_value": true,
+            "reranker_value": true,
+            "final_value": true,
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "expense_cap.expense_cap_pct": {
+            "t3_value": "0.50",
+            "reranker_value": "0.50",
+            "final_value": "0.50",
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "repurchase_terms.repurchase_frequency": {
+            "t3_value": null,
+            "reranker_value": "quarterly",
+            "final_value": "quarterly",
+            "values_agree": false,
+            "both_null": false,
+            "escalated": true,
+            "escalation_reason": "disagreement",
+            "source": "reranker_fallback",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "repurchase_terms.repurchase_amount_pct": {
+            "t3_value": null,
+            "reranker_value": "5%",
+            "final_value": "5%",
+            "values_agree": false,
+            "both_null": false,
+            "escalated": true,
+            "escalation_reason": "disagreement",
+            "source": "reranker_fallback",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "repurchase_terms.lock_up_period_years": {
+            "t3_value": 1,
+            "reranker_value": 1,
+            "final_value": 1,
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "repurchase_terms.early_repurchase_fee_pct": {
+            "t3_value": "2.00",
+            "reranker_value": "2.00",
+            "final_value": "2.00",
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "leverage.uses_leverage": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": "true",
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "t4",
+            "t4_success": true,
+            "t4_confidence": 1.0
+          },
+          "leverage.max_leverage_pct": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": null,
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "not_found",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "distribution.distribution_frequency": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": null,
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "not_found",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "fund_type": {
+            "t3_value": "interval_fund",
+            "reranker_value": "interval_fund",
+            "final_value": "interval_fund",
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          }
+        }
+      },
+      "stats": {
+        "sections": 18,
+        "chunks": 94,
+        "tokens": 54903
+      },
+      "error": null,
+      "duration_seconds": 261.25282621383667
+    },
+    "Carlyle AlpInvest Private Markets Secondaries Fund": {
+      "fund_name": "Carlyle AlpInvest Private Markets Secondaries Fund",
+      "cik": "0002058263",
+      "filing_path": "data/raw/0002058263/2025-09-17_0001398344-25-018198",
+      "extraction": {
+        "filing_id": "0002058263_34e10d758f56",
+        "cik": "0002058263",
+        "fund_name": "Carlyle AlpInvest Private Markets Secondaries Fund",
+        "fund_type": "tender_offer_fund",
+        "fund_type_flags": {
+          "RegisteredClosedEndFundFlag": true,
+          "BusinessDevelopmentCompanyFlag": false,
+          "IntervalFundFlag": false,
+          "PrimaryShelfFlag": false,
+          "PrimaryShelfQualifiedFlag": false,
+          "NewCefOrBdcRegistrantFlag": true
+        },
+        "xbrl_fees": {},
+        "fund_metadata": null,
+        "leverage_limits": {
+          "uses_leverage": true,
+          "max_leverage_pct": 33,
+          "leverage_basis": "asset_coverage"
+        },
+        "distribution_terms": {
+          "distribution_frequency": "quarterly",
+          "target_distribution_rate": 5
+        },
+        "incentive_fee": {
+          "has_incentive_fee": true,
+          "incentive_fee_pct": "12.5",
+          "fee_basis": "net_profits",
+          "crystallization_frequency": "quarterly",
+          "evidence": "In addition, at the end of each calendar quarter of the Fund (and at certain other times), the Adviser... will be entitled to receive an Incentive Fee equal to 12.5% of the excess, if any, of (i) the net profits of the Fund for the relevant period over (ii) the then balance, if any, of the Loss Recovery Account.",
+          "hurdle_rate_pct": "5%",
+          "high_water_mark": "true",
+          "has_catch_up": false
+        },
+        "expense_cap": {
+          "has_expense_cap": true,
+          "expense_cap_pct": "3.00",
+          "evidence": "the Adviser has agreed contractually for a period of 18 months from the commencement of the Fund's operations to waive its Management Fee and/or reimburse the Fund\u2019s initial organizational and offering costs incurred prior to launch, as well as the Fund\u2019s operating expenses on a monthly basis, to the extent that the Fund\u2019s total annualized fund operating and ongoing offering expenses on a monthly basis [...] exceed 3.00% (the \u201cExpense Cap\u201d)."
+        },
+        "repurchase_terms": {
+          "lock_up_period_years": 1,
+          "early_repurchase_fee_pct": "2.00",
+          "evidence": "A 2.00% early repurchase fee will be charged by the Fund with respect to any repurchase of Shares from a Shareholder at any time prior to the day immediately preceding the one-year anniversary of the Shareholder\u2019s purchase of the Shares.",
+          "repurchase_frequency": "quarterly",
+          "repurchase_amount_pct": "5%"
+        },
+        "allocation_targets": {
+          "evidence": "The Fund believes that a closed-end structure is most appropriate for the long-term nature of the Fund\u2019s strategy."
+        },
+        "concentration_limits": {
+          "evidence": "The Fund is organized as a continuously offered, non-diversified closed-end management investment company."
+        },
+        "share_classes": {
+          "share_classes": [
+            {
+              "class_name": "Class U",
+              "minimum_initial_investment": null,
+              "minimum_additional_investment": null,
+              "sales_load_pct": "3.00",
+              "distribution_fee_pct": "0.85"
+            },
+            {
+              "class_name": "Class D",
+              "minimum_initial_investment": null,
+              "minimum_additional_investment": null,
+              "sales_load_pct": "3.00",
+              "distribution_fee_pct": "0.25"
+            },
+            {
+              "class_name": "Class I",
+              "minimum_initial_investment": null,
+              "minimum_additional_investment": null,
+              "sales_load_pct": "0",
+              "distribution_fee_pct": "0"
+            }
+          ],
+          "evidence": "Investors purchasing Class U Shares or Class D Shares may be charged a sales load of up to 3.00% of the Investor\u2019s gross purchase. The Fund may charge a distribution fee totaling up to 0.85% per year on Class U Shares and 0.25% per year on Class D Shares. Class I is not subject to any distribution fee."
+        },
+        "chunks_processed": 0,
+        "extraction_errors": [],
+        "grounding": {
+          "total_fields": 9,
+          "grounded_fields": 9,
+          "grounding_rate": 1.0,
+          "field_results": {
+            "fund_type_flags": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "leverage_limits": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "distribution_terms": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "incentive_fee": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "expense_cap": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "repurchase_terms": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "allocation_targets": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "concentration_limits": {
+              "is_grounded": true,
+              "grounding_score": 0.5,
+              "issues": [],
+              "verified_values": [],
+              "unverified_values": []
+            },
+            "share_classes": {
+              "is_grounded": true,
+              "grounding_score": 1.0,
+              "issues": [],
+              "verified_values": [
+                "class_name: Class U",
+                "Class U.sales_load_pct: 3.00%",
+                "class_name: Class D",
+                "Class D.sales_load_pct: 3.00%",
+                "class_name: Class I",
+                "Class I.sales_load_pct: 0%"
+              ],
+              "unverified_values": []
+            }
+          },
+          "overall_issues": []
+        },
+        "extraction_trace": {
+          "summary": {
+            "filing_id": "0002058263_0001398344-25-018198",
+            "fund_name": "Carlyle AlpInvest Private Markets Secondaries Fund",
+            "total_fields": 9,
+            "flagged_for_review": 0,
+            "flagged_pct": "0.0%",
+            "by_confidence": {
+              "explicit": 0,
+              "inferred": 8,
+              "not_found": 1
+            },
+            "by_source_layer": {
+              "grounding": 8
+            },
+            "duration_seconds": 46.193126
+          },
+          "trace_available": true
+        },
+        "leverage": {
+          "uses_leverage": "true",
+          "max_leverage_pct": "33.33%"
+        },
+        "ensemble_metadata": {
+          "extraction_mode": "ensemble_t4",
+          "accepted_fields": [
+            "incentive_fee.has_incentive_fee",
+            "incentive_fee.incentive_fee_pct",
+            "expense_cap.has_expense_cap",
+            "expense_cap.expense_cap_pct",
+            "repurchase_terms.lock_up_period_years",
+            "repurchase_terms.early_repurchase_fee_pct",
+            "fund_type"
+          ],
+          "escalated_fields": [
+            "incentive_fee.hurdle_rate_pct",
+            "incentive_fee.high_water_mark",
+            "incentive_fee.has_catch_up",
+            "repurchase_terms.repurchase_frequency",
+            "repurchase_terms.repurchase_amount_pct",
+            "leverage.uses_leverage",
+            "leverage.max_leverage_pct",
+            "distribution.distribution_frequency"
+          ],
+          "t4_successes": [
+            "incentive_fee.hurdle_rate_pct",
+            "incentive_fee.high_water_mark",
+            "repurchase_terms.repurchase_frequency",
+            "repurchase_terms.repurchase_amount_pct",
+            "leverage.uses_leverage",
+            "leverage.max_leverage_pct"
+          ]
+        }
+      },
+      "trace": {
+        "extraction_mode": "ensemble_t4",
+        "config": {
+          "t3_top_k": 10,
+          "reranker_first_pass_n": 200,
+          "reranker_top_k": 10,
+          "t4_model": "gpt-4o",
+          "t4_max_iterations": 12,
+          "escalate_on_disagreement": true,
+          "escalate_on_both_null": true
+        },
+        "statistics": {
+          "total_fields": 15,
+          "accepted_count": 7,
+          "escalated_count": 8,
+          "t4_success_count": 6,
+          "agreement_rate": 0.4666666666666667,
+          "escalation_rate": 0.5333333333333333,
+          "t4_success_rate": 0.75
+        },
+        "timing": {
+          "t3_duration_seconds": 46.52363204956055,
+          "reranker_duration_seconds": 37.2214937210083,
+          "t4_duration_seconds": 194.35707783699036,
+          "total_duration_seconds": 278.10266876220703
+        },
+        "field_decisions": {
+          "incentive_fee.has_incentive_fee": {
+            "t3_value": true,
+            "reranker_value": true,
+            "final_value": true,
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "incentive_fee.incentive_fee_pct": {
+            "t3_value": "12.5",
+            "reranker_value": "12.5",
+            "final_value": "12.5",
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "incentive_fee.hurdle_rate_pct": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": "5%",
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "t4",
+            "t4_success": true,
+            "t4_confidence": 0.85
+          },
+          "incentive_fee.high_water_mark": {
+            "t3_value": null,
+            "reranker_value": false,
+            "final_value": "true",
+            "values_agree": false,
+            "both_null": false,
+            "escalated": true,
+            "escalation_reason": "disagreement",
+            "source": "t4",
+            "t4_success": true,
+            "t4_confidence": 0.85
+          },
+          "incentive_fee.has_catch_up": {
+            "t3_value": null,
+            "reranker_value": false,
+            "final_value": false,
+            "values_agree": false,
+            "both_null": false,
+            "escalated": true,
+            "escalation_reason": "disagreement",
+            "source": "reranker_fallback",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "expense_cap.has_expense_cap": {
+            "t3_value": true,
+            "reranker_value": true,
+            "final_value": true,
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "expense_cap.expense_cap_pct": {
+            "t3_value": "3.00",
+            "reranker_value": "3.00",
+            "final_value": "3.00",
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "repurchase_terms.repurchase_frequency": {
+            "t3_value": null,
+            "reranker_value": "quarterly",
+            "final_value": "quarterly",
+            "values_agree": false,
+            "both_null": false,
+            "escalated": true,
+            "escalation_reason": "disagreement",
+            "source": "t4",
+            "t4_success": true,
+            "t4_confidence": 1.0
+          },
+          "repurchase_terms.repurchase_amount_pct": {
+            "t3_value": null,
+            "reranker_value": "5%",
+            "final_value": "5%",
+            "values_agree": false,
+            "both_null": false,
+            "escalated": true,
+            "escalation_reason": "disagreement",
+            "source": "t4",
+            "t4_success": true,
+            "t4_confidence": 1.0
+          },
+          "repurchase_terms.lock_up_period_years": {
+            "t3_value": 1,
+            "reranker_value": 1,
+            "final_value": 1,
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "repurchase_terms.early_repurchase_fee_pct": {
+            "t3_value": "2.00",
+            "reranker_value": "2.00",
+            "final_value": "2.00",
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "leverage.uses_leverage": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": "true",
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "t4",
+            "t4_success": true,
+            "t4_confidence": 1.0
+          },
+          "leverage.max_leverage_pct": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": "33.33%",
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "t4",
+            "t4_success": true,
+            "t4_confidence": 1.0
+          },
+          "distribution.distribution_frequency": {
+            "t3_value": null,
+            "reranker_value": null,
+            "final_value": null,
+            "values_agree": true,
+            "both_null": true,
+            "escalated": true,
+            "escalation_reason": "both_null",
+            "source": "not_found",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          },
+          "fund_type": {
+            "t3_value": "tender_offer_fund",
+            "reranker_value": "tender_offer_fund",
+            "final_value": "tender_offer_fund",
+            "values_agree": true,
+            "both_null": false,
+            "escalated": false,
+            "escalation_reason": "none",
+            "source": "agreement",
+            "t4_success": false,
+            "t4_confidence": 0.0
+          }
+        }
+      },
+      "stats": {
+        "sections": 24,
+        "chunks": 251,
+        "tokens": 83253
+      },
+      "error": null,
+      "duration_seconds": 297.1392824649811
+    }
+  },
+  "errors": [],
+  "summary": {
+    "total_funds": 5,
+    "successful_funds": 5,
+    "failed_funds": 0,
+    "total_duration_seconds": 1528.4095335006714,
+    "errors": []
+  }
+}

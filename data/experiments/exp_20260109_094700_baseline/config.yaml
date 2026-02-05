@@ -1,0 +1,43 @@
+extraction:
+  model: gpt-4o-mini
+  max_chunk_tokens: 8000
+  max_retries: 2
+  extraction_mode: combined
+  use_examples: true
+  max_examples: 3
+tiers:
+  tier0_enabled: true
+  tier1_enabled: true
+  tier2_enabled: true
+  tier2_max_chars: 12000
+  tier3_enabled: true
+  tier3_top_k_sections: 5
+  tier3_max_chunks_per_section: 10
+  tier3_keyword_threshold: 0
+grounding:
+  enabled: true
+  strict_mode: false
+  min_score: 0.0
+observability:
+  enabled: true
+  trace_level: full
+  save_llm_responses: true
+  output_dir: null
+validation:
+  funds:
+  - Blackstone Private Multi-Asset Credit and Income Fund
+  - StepStone Private Markets
+  - Hamilton Lane Private Assets Fund
+  ground_truth_dir: configs/ground_truth
+cost:
+  input_token_cost: 0.00015
+  output_token_cost: 0.0006
+experiment:
+  name: null
+  description: null
+  hypothesis: null
+field_overrides:
+  share_classes:
+    max_chunk_tokens: 10000
+  allocation_targets:
+    extraction_mode: per_section

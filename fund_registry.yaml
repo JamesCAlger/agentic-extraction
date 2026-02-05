@@ -1,0 +1,629 @@
+# Evergreen Funds Registry
+# MVP Target: 100-200 funds across PE, Credit, Real Estate, Infrastructure
+#
+# Last Updated: December 30, 2024
+# Verification Status: 29 funds verified with CIKs confirmed, 16 funds excluded
+#
+# Structure types:
+#   - interval_fund: 1940 Act registered, mandatory periodic repurchases
+#   - tender_offer_fund: 1940 Act registered, discretionary repurchases
+#
+# IMPORTANT: Only funds that file N-PORT are included (1940 Act registered)
+# Non-traded REITs and BDCs file 10-K/10-Q instead - EXCLUDED from MVP scope
+
+# ============================================================================
+# VERIFIED FUNDS - CIK confirmed, N-PORT filings confirmed
+# ============================================================================
+
+funds:
+
+  # --------------------------------------------------------------------------
+  # PRIVATE EQUITY - INTERVAL FUNDS (Verified)
+  # --------------------------------------------------------------------------
+
+  - name: "Hamilton Lane Private Assets Fund"
+    cik: "0001803491"
+    ticker: "HLPAX"
+    structure: interval_fund
+    strategy: private_equity
+    sub_strategies:
+      - buyout
+      - secondaries
+      - co_investment
+    adviser: "Hamilton Lane Advisors, L.L.C."
+    inception_date: "2021-01-04"
+    verified: true
+    notes: "One of largest PE interval funds. Predecessor fund reorganized into this structure."
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1803491"
+
+  - name: "Partners Group Private Equity (Master Fund), LLC"
+    cik: "0001447247"
+    ticker: null
+    structure: interval_fund
+    strategy: private_equity
+    sub_strategies:
+      - buyout
+      - growth
+    adviser: "Partners Group (USA) Inc."
+    inception_date: "2009-07-01"
+    verified: true
+    notes: "Swiss manager, US registered fund. $13.6B+ AUM. Multiple feeder funds."
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1447247"
+
+  - name: "Partners Group Private Equity II, LLC"
+    cik: "0001756041"
+    ticker: null
+    structure: interval_fund
+    strategy: private_equity
+    sub_strategies:
+      - buyout
+      - growth
+    adviser: "Partners Group (USA) Inc."
+    inception_date: null
+    verified: true
+    notes: "Second Partners Group PE fund"
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1756041"
+
+  - name: "AMG Pantheon Private Equity Fund, LLC"
+    cik: "0001609211"
+    ticker: null
+    structure: interval_fund
+    strategy: private_equity
+    sub_strategies:
+      - primaries
+      - secondaries
+      - co_investment
+    adviser: "Pantheon Ventures (US) LP"
+    inception_date: "2014-05-16"
+    verified: true
+    notes: "Feeder into AMG Pantheon Private Equity Master Fund (CIK 1609212)"
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1609211"
+
+  - name: "Pomona Investment Fund"
+    cik: "0001616203"
+    ticker: null
+    structure: interval_fund
+    strategy: private_equity
+    sub_strategies:
+      - secondaries
+    adviser: "Pomona Management LLC"
+    inception_date: "2015-05-07"
+    verified: true
+    notes: "Voya subsidiary, secondaries focus. Formerly Pomona Private Equity Fund."
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1616203"
+
+  - name: "StepStone Private Markets"
+    cik: "0001789470"
+    ticker: null
+    structure: interval_fund
+    strategy: private_equity
+    sub_strategies:
+      - primaries
+      - secondaries
+      - co_investment
+    adviser: "StepStone Group LP"
+    inception_date: null
+    verified: true
+    notes: "Diversified, closed-end management investment company"
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1789470"
+
+  - name: "Ares Private Markets Fund"
+    cik: "0001876006"
+    ticker: null
+    structure: interval_fund
+    strategy: private_equity
+    sub_strategies:
+      - secondaries
+      - co_investment
+    adviser: "Ares Capital Management II, LLC"
+    inception_date: null
+    verified: true
+    notes: "Formerly Ares Landmark Private Markets Fund"
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1876006"
+
+  - name: "NB Private Markets Access Fund LLC"
+    cik: "0001818105"
+    ticker: null
+    structure: interval_fund
+    strategy: private_equity
+    sub_strategies:
+      - co_investment
+      - gp_led_secondaries
+    adviser: "Neuberger Berman Investment Advisers LLC"
+    inception_date: null
+    verified: true
+    notes: "Sub-advised by NB Alternatives Advisers LLC"
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1818105"
+
+  - name: "StepStone Private Venture & Growth Fund"
+    cik: "0001918642"
+    ticker: null
+    structure: interval_fund
+    strategy: private_equity
+    sub_strategies:
+      - venture
+      - growth
+    adviser: "StepStone Group LP"
+    inception_date: null
+    verified: true
+    notes: "Venture and growth equity focus"
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1918642"
+
+  - name: "iDirect Private Markets Fund"
+    cik: "0001606789"
+    ticker: null
+    structure: tender_offer_fund
+    strategy: private_equity
+    sub_strategies:
+      - buyout
+      - growth
+    adviser: "iCapital Registered Fund Adviser LLC"
+    inception_date: "2015-07-31"
+    verified: true
+    notes: "Formerly iCapital KKR Private Markets Fund. Tender offer fund with KKR sub-advised strategy."
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1606789"
+
+  # --------------------------------------------------------------------------
+  # PRIVATE CREDIT - INTERVAL FUNDS (Verified)
+  # --------------------------------------------------------------------------
+
+  - name: "Cliffwater Corporate Lending Fund"
+    cik: "0001735964"
+    ticker: "CCLFX"
+    structure: interval_fund
+    strategy: private_credit
+    sub_strategies:
+      - direct_lending
+      - senior_secured
+    adviser: "Cliffwater LLC"
+    inception_date: "2019-06-05"
+    verified: true
+    notes: "Large credit interval fund"
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1735964"
+
+  - name: "Cliffwater Enhanced Lending Fund"
+    cik: "0001842754"
+    ticker: "CELFX"
+    structure: interval_fund
+    strategy: private_credit
+    sub_strategies:
+      - direct_lending
+    adviser: "Cliffwater LLC"
+    inception_date: null
+    verified: true
+    notes: "Enhanced yield strategy"
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1842754"
+
+  - name: "Apollo Diversified Credit Fund"
+    cik: "0001676197"
+    ticker: null
+    structure: interval_fund
+    strategy: private_credit
+    sub_strategies:
+      - senior_loans
+      - high_yield
+      - structured_credit
+    adviser: "Apollo Credit Management, LLC"
+    inception_date: null
+    verified: true
+    notes: "$1B+ AUM. 80% in debt securities."
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1676197"
+
+  - name: "PIMCO Flexible Credit Income Fund"
+    cik: "0001688554"
+    ticker: "PFLEX"
+    structure: interval_fund
+    strategy: private_credit
+    sub_strategies:
+      - corporate_credit
+      - structured_credit
+    adviser: "Pacific Investment Management Company LLC"
+    inception_date: null
+    verified: true
+    notes: "Quarterly 5% repurchases"
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1688554"
+
+  - name: "Oaktree Diversified Income Fund Inc."
+    cik: "0001870714"
+    ticker: "ODIDX"
+    structure: interval_fund
+    strategy: private_credit
+    sub_strategies:
+      - high_yield
+      - senior_loans
+      - structured_credit
+      - emerging_markets_debt
+    adviser: "Oaktree Fund Advisors, LLC"
+    inception_date: "2021-07-09"
+    verified: true
+    notes: "Part of Brookfield Oaktree. Public and private credit."
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1870714"
+
+  - name: "KKR Credit Opportunities Portfolio"
+    cik: "0001787621"
+    ticker: "KCOPX"
+    structure: interval_fund
+    strategy: private_credit
+    sub_strategies:
+      - opportunistic_credit
+    adviser: "KKR Credit Advisors (US) LLC"
+    inception_date: null
+    verified: true
+    notes: "Diversified, closed-end interval fund"
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1787621"
+
+  - name: "Carlyle Tactical Private Credit Fund"
+    cik: "0001725472"
+    ticker: "CTAC"
+    structure: interval_fund
+    strategy: private_credit
+    sub_strategies:
+      - direct_lending
+      - opportunistic_credit
+    adviser: "Carlyle Investment Management L.L.C."
+    inception_date: "2017-12-13"
+    verified: true
+    notes: "Formerly OFI Carlyle Private Credit Fund. 80% in private fixed income."
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1725472"
+
+  - name: "Variant Alternative Income Fund"
+    cik: "0001736510"
+    ticker: "NICHX"
+    structure: interval_fund
+    strategy: private_credit
+    sub_strategies:
+      - specialty_finance
+      - asset_backed
+    adviser: "Variant Investments, LLC"
+    inception_date: "2018-10-01"
+    verified: true
+    notes: "Converted from predecessor private fund"
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1736510"
+
+  - name: "Blue Owl Alternative Credit Fund"
+    cik: "0002059436"
+    ticker: null
+    structure: interval_fund
+    strategy: private_credit
+    sub_strategies:
+      - direct_lending
+    adviser: "Blue Owl Alternative Credit Advisors II LLC"
+    inception_date: null
+    verified: true
+    notes: "Current income focus"
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2059436"
+
+  - name: "Principal Private Credit Fund I"
+    cik: "0002016900"
+    ticker: "PPAIX"
+    structure: interval_fund
+    strategy: private_credit
+    sub_strategies:
+      - direct_lending
+    adviser: "Principal Global Investors, LLC"
+    inception_date: "2024-06-04"
+    verified: true
+    notes: "Quarterly 5% repurchases. 80%+ in private credit investments."
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2016900"
+
+  - name: "StepStone Private Credit Income Fund"
+    cik: "0002006100"
+    ticker: "CRDEX"
+    structure: interval_fund
+    strategy: private_credit
+    sub_strategies:
+      - direct_lending
+      - senior_secured
+    adviser: "StepStone Group LP"
+    inception_date: "2024-06-06"
+    verified: true
+    notes: "Daily NAV, quarterly 5% repurchases. 80%+ in private credit."
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2006100"
+
+  - name: "AMG Pantheon Credit Solutions Fund"
+    cik: "0001995940"
+    ticker: "PCSZX"
+    structure: interval_fund
+    strategy: private_credit
+    sub_strategies:
+      - secondaries
+      - direct_lending
+    adviser: "Pantheon Ventures (US) LP"
+    inception_date: null
+    verified: true
+    notes: "Secondaries-focused credit strategy. $930M+ NAV."
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1995940"
+
+  # --------------------------------------------------------------------------
+  # REAL ESTATE - INTERVAL/TENDER OFFER FUNDS (Verified)
+  # --------------------------------------------------------------------------
+
+  - name: "Apollo Diversified Real Estate Fund"
+    cik: "0001597634"
+    ticker: "GIREX"
+    structure: interval_fund
+    strategy: real_estate
+    sub_strategies:
+      - diversified
+    adviser: "Apollo Real Estate Fund Adviser, LLC"
+    inception_date: "2014-06-30"
+    verified: true
+    notes: "Formerly Griffin Institutional Access Real Estate Fund"
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1597634"
+
+  - name: "Clarion Partners Real Estate Income Fund"
+    cik: "0001762562"
+    ticker: "CPREX"
+    structure: tender_offer_fund
+    strategy: real_estate
+    sub_strategies:
+      - core
+      - core_plus
+    adviser: "Clarion Partners, LLC"
+    inception_date: "2019-01-01"
+    verified: true
+    notes: "Franklin Templeton subsidiary. 80%+ in private CRE and public RE securities."
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1762562"
+
+  - name: "KKR Real Estate Select Trust"
+    cik: "0001803958"
+    ticker: "KREST"
+    structure: tender_offer_fund
+    strategy: real_estate
+    sub_strategies:
+      - core_plus
+      - value_add
+    adviser: "KKR Registered Advisor LLC"
+    inception_date: "2021-05-18"
+    verified: true
+    notes: "1940 Act registered, elected REIT status. $3.3B+ property portfolio."
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1803958"
+
+  # --------------------------------------------------------------------------
+  # INFRASTRUCTURE - INTERVAL/TENDER OFFER FUNDS (Verified)
+  # --------------------------------------------------------------------------
+
+  - name: "StepStone Private Infrastructure Fund"
+    cik: "0001957892"
+    ticker: "STRUX"
+    structure: interval_fund
+    strategy: infrastructure
+    sub_strategies:
+      - core
+      - energy_transition
+    adviser: "StepStone Group LP"
+    inception_date: null
+    verified: true
+    notes: "Infrastructure-focused interval fund"
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1957892"
+
+  - name: "Brookfield Infrastructure Income Fund"
+    cik: "0001955857"
+    ticker: null
+    structure: tender_offer_fund
+    strategy: infrastructure
+    sub_strategies:
+      - core
+      - core_plus
+    adviser: "Brookfield Asset Management Private Institutional Capital Adviser"
+    inception_date: "2023-11-01"
+    verified: true
+    notes: "Reorganized from Luxembourg predecessor fund. Brookfield/Oaktree platform."
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1955857"
+
+  # --------------------------------------------------------------------------
+  # MULTI-STRATEGY - INTERVAL FUNDS (Verified)
+  # --------------------------------------------------------------------------
+
+  - name: "Blackstone Alternative Multi-Strategy Fund"
+    cik: "0001557794"
+    ticker: "BXMIX"
+    structure: interval_fund
+    strategy: multi_strategy
+    sub_strategies:
+      - hedge_fund_strategies
+      - alternatives
+    adviser: "Blackstone Alternative Investment Advisors LLC"
+    inception_date: null
+    verified: true
+    notes: "Allocates across alternative strategies"
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1557794"
+
+  - name: "Blackstone Private Multi-Asset Credit Fund"
+    cik: "0002032432"
+    ticker: "BMACX"
+    structure: interval_fund
+    strategy: private_credit
+    sub_strategies:
+      - multi_asset_credit
+    adviser: "Blackstone Alternative Investment Advisors LLC"
+    inception_date: "2025-03-10"
+    verified: true
+    notes: "New fund, SEC effective March 2025. Access to $453B credit platform."
+    sec_url: "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2032432"
+
+# ============================================================================
+# FUNDS TO VERIFY - CIK needs confirmation or N-PORT status unclear
+# ============================================================================
+
+funds_to_verify:
+
+  # Additional managers to research for potential interval funds:
+  # - Lexington Partners (secondaries focus)
+  # - HarbourVest Partners
+  # - Adams Street Partners
+  # - Barings (credit)
+  # - TCW (credit)
+  # - Guggenheim (credit)
+  # - AllianceBernstein
+  # - Nuveen (beyond REITs)
+
+  - name: "iDirect Private Credit Fund"
+    cik: null
+    notes: "Part of iDirect series, daily NAV interval fund. Need to find CIK."
+
+  - name: "iDirect Multi-Strategy Fund"
+    cik: null
+    notes: "Part of iDirect series. Need to find CIK."
+
+# ============================================================================
+# EXCLUDED - Not 1940 Act registered (file 10-K/10-Q, not N-PORT)
+# ============================================================================
+
+excluded_funds:
+
+  # --------------------------------------------------------------------------
+  # Exempt Funds (3(c)(7) - file 10-K, not N-PORT)
+  # --------------------------------------------------------------------------
+
+  - name: "Blackstone Private Equity Strategies Fund (BXPE)"
+    cik: "0001930054"
+    reason: "3(c)(7) exempt fund, files 10-K not N-PORT"
+    structure: "exempt_fund"
+
+  # --------------------------------------------------------------------------
+  # Non-Traded REITs (file 10-K/10-Q, not N-PORT)
+  # --------------------------------------------------------------------------
+
+  - name: "Blackstone Real Estate Income Trust (BREIT)"
+    cik: "0001662972"
+    reason: "Non-traded REIT, not 1940 Act registered"
+    structure: "non_traded_reit"
+
+  - name: "Starwood Real Estate Income Trust (SREIT)"
+    cik: "0001711929"
+    reason: "Non-traded REIT, not 1940 Act registered"
+    structure: "non_traded_reit"
+
+  - name: "Brookfield Real Estate Income Trust"
+    cik: "0001713407"
+    reason: "Non-traded REIT, explicitly states not registering under 1940 Act"
+    structure: "non_traded_reit"
+
+  - name: "Nuveen Global Cities REIT"
+    cik: "0001711799"
+    reason: "Non-traded REIT, files 10-K not N-PORT"
+    structure: "non_traded_reit"
+
+  - name: "Ares Real Estate Income Trust (AREIT)"
+    cik: "0001327978"
+    reason: "Non-traded REIT, files 10-K not N-PORT. $5.4B AUM."
+    structure: "non_traded_reit"
+
+  - name: "Ares Industrial Real Estate Income Trust (AIREIT)"
+    cik: "0001625941"
+    reason: "Non-traded REIT, files 10-K not N-PORT"
+    structure: "non_traded_reit"
+
+  # --------------------------------------------------------------------------
+  # Business Development Companies (BDCs - file 10-K/10-Q, not N-PORT)
+  # --------------------------------------------------------------------------
+
+  - name: "Blue Owl Capital Corp (OBDC)"
+    cik: "0001655888"
+    reason: "BDC structure, files 10-K not N-PORT"
+    structure: "bdc"
+
+  - name: "Blue Owl Technology Finance Corp"
+    cik: "0001747777"
+    reason: "BDC structure, files 10-K not N-PORT"
+    structure: "bdc"
+
+  - name: "Blue Owl Credit Income Corp"
+    cik: "0001812554"
+    reason: "BDC structure, files 10-K not N-PORT"
+    structure: "bdc"
+
+  - name: "Golub Capital BDC, Inc."
+    cik: "0001476765"
+    ticker: "GBDC"
+    reason: "BDC structure, files 10-K not N-PORT"
+    structure: "bdc"
+
+  - name: "Golub Capital BDC 3, Inc."
+    cik: "0001715268"
+    reason: "BDC structure, files 10-K not N-PORT"
+    structure: "bdc"
+
+  - name: "Monroe Capital Corporation"
+    cik: "0001512931"
+    ticker: "MRCC"
+    reason: "BDC structure, files 10-K not N-PORT"
+    structure: "bdc"
+
+  - name: "Monroe Capital Income Plus Corp"
+    cik: "0001742313"
+    reason: "Private BDC, files 10-K not N-PORT"
+    structure: "bdc"
+
+  - name: "FS KKR Capital Corp"
+    cik: "0001422183"
+    ticker: "FSK"
+    reason: "BDC structure, files 10-K not N-PORT"
+    structure: "bdc"
+
+  # --------------------------------------------------------------------------
+  # Private LP Funds (Form D only, no public filings)
+  # --------------------------------------------------------------------------
+
+  - name: "Siguler Guff Small Buyout Opportunities Fund"
+    cik: "0001380035"
+    reason: "Private LP structure, not 1940 Act registered"
+    structure: "private_lp"
+
+  - name: "KKR Diversified Core Infrastructure Fund"
+    cik: "0001836821"
+    reason: "Luxembourg SCSp structure, private fund, Form D filings only"
+    structure: "private_lp"
+
+  # --------------------------------------------------------------------------
+  # Liquidated Funds
+  # --------------------------------------------------------------------------
+
+  - name: "Blackstone Floating Rate Enhanced Income Fund"
+    cik: "0001710523"
+    reason: "Interval fund LIQUIDATED in June 2024"
+    structure: "interval_fund_liquidated"
+
+# ============================================================================
+# SUMMARY STATISTICS
+# ============================================================================
+
+summary:
+  verified_funds: 29
+  funds_to_verify: 2
+  excluded_funds: 16
+
+  by_strategy:
+    private_equity: 10  # +1 iDirect PM
+    private_credit: 14  # +3 Principal, StepStone Credit, AMG Pantheon
+    real_estate: 3      # +2 Clarion, KREST
+    infrastructure: 2   # +1 Brookfield
+    multi_strategy: 2
+
+  by_structure:
+    interval_fund: 23
+    tender_offer_fund: 6  # iDirect PM, Clarion, KREST, Brookfield Infra + others
+
+  excluded_by_type:
+    non_traded_reit: 6
+    bdc: 8
+    exempt_fund: 1
+    private_lp: 2
+    liquidated: 1
+
+# ============================================================================
+# NEXT STEPS
+# ============================================================================
+# 1. Search for additional interval funds from:
+#    - Lexington Partners (PE secondaries)
+#    - HarbourVest Partners (PE primaries/secondaries)
+#    - Adams Street Partners (PE)
+#    - Barings (credit)
+#    - TCW (credit)
+#    - Guggenheim (credit)
+#    - AllianceBernstein (alternatives)
+# 2. Find CIKs for iDirect Private Credit and Multi-Strategy funds
+# 3. Confirm all verified funds have recent N-PORT filings (within 6 months)
+# 4. Add share class information where relevant
+# ============================================================================

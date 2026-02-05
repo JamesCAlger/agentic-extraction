@@ -1,0 +1,370 @@
+{
+  "run_id": "exp_20260109_094700_baseline",
+  "ground_truth_version": "configs/ground_truth",
+  "overall": {
+    "precision": 0.6666666666666666,
+    "recall": 0.4074074074074074,
+    "f1_score": 0.5057471264367817,
+    "accuracy": 0.484375
+  },
+  "per_fund": {
+    "Blackstone Private Multi-Asset Credit and Income Fund": {
+      "precision": 0.75,
+      "recall": 0.5294117647058824,
+      "f1_score": 0.6206896551724139,
+      "accuracy": 0.5294117647058824,
+      "total_fields": 17,
+      "correct_fields": 9,
+      "error_breakdown": {
+        "correct": 9,
+        "wrong_value": 3,
+        "missed": 5,
+        "hallucinated": 0
+      }
+    },
+    "StepStone Private Markets": {
+      "precision": 0.5,
+      "recall": 0.2777777777777778,
+      "f1_score": 0.35714285714285715,
+      "accuracy": 0.43478260869565216,
+      "total_fields": 23,
+      "correct_fields": 10,
+      "error_breakdown": {
+        "correct": 10,
+        "wrong_value": 5,
+        "missed": 8,
+        "hallucinated": 0
+      }
+    },
+    "Hamilton Lane Private Assets Fund": {
+      "precision": 0.7272727272727273,
+      "recall": 0.42105263157894735,
+      "f1_score": 0.5333333333333333,
+      "accuracy": 0.5,
+      "total_fields": 24,
+      "correct_fields": 12,
+      "error_breakdown": {
+        "correct": 12,
+        "wrong_value": 2,
+        "missed": 9,
+        "hallucinated": 1
+      }
+    }
+  },
+  "per_field": {
+    "fund_type": {
+      "total": 3,
+      "correct": 2,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "funds_incorrect": [
+        "StepStone Private Markets"
+      ],
+      "accuracy": 0.6666666666666666
+    },
+    "share_classes.share_classes": {
+      "total": 3,
+      "correct": 1,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund"
+      ],
+      "funds_incorrect": [
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "accuracy": 0.3333333333333333
+    },
+    "incentive_fee.incentive_fee_pct": {
+      "total": 3,
+      "correct": 1,
+      "funds_correct": [
+        "StepStone Private Markets"
+      ],
+      "funds_incorrect": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "accuracy": 0.3333333333333333
+    },
+    "incentive_fee.hurdle_rate_pct": {
+      "total": 3,
+      "correct": 2,
+      "funds_correct": [
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "funds_incorrect": [
+        "Blackstone Private Multi-Asset Credit and Income Fund"
+      ],
+      "accuracy": 0.6666666666666666
+    },
+    "incentive_fee.high_water_mark": {
+      "total": 3,
+      "correct": 2,
+      "funds_correct": [
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "funds_incorrect": [
+        "Blackstone Private Multi-Asset Credit and Income Fund"
+      ],
+      "accuracy": 0.6666666666666666
+    },
+    "expense_cap.has_expense_cap": {
+      "total": 3,
+      "correct": 2,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "funds_incorrect": [
+        "StepStone Private Markets"
+      ],
+      "accuracy": 0.6666666666666666
+    },
+    "expense_cap.expense_cap_pct": {
+      "total": 1,
+      "correct": 0,
+      "funds_correct": [],
+      "funds_incorrect": [
+        "Blackstone Private Multi-Asset Credit and Income Fund"
+      ],
+      "accuracy": 0.0
+    },
+    "repurchase_terms.repurchase_frequency": {
+      "total": 3,
+      "correct": 3,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "repurchase_terms.repurchase_amount_pct": {
+      "total": 3,
+      "correct": 0,
+      "funds_correct": [],
+      "funds_incorrect": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "accuracy": 0.0
+    },
+    "repurchase_terms.repurchase_basis": {
+      "total": 3,
+      "correct": 2,
+      "funds_correct": [
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "funds_incorrect": [
+        "Blackstone Private Multi-Asset Credit and Income Fund"
+      ],
+      "accuracy": 0.6666666666666666
+    },
+    "repurchase_terms.lock_up_period_years": {
+      "total": 3,
+      "correct": 3,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "repurchase_terms.early_repurchase_fee_pct": {
+      "total": 3,
+      "correct": 3,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "leverage_limits.uses_leverage": {
+      "total": 3,
+      "correct": 3,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "leverage_limits.max_leverage_pct": {
+      "total": 3,
+      "correct": 1,
+      "funds_correct": [
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "funds_incorrect": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets"
+      ],
+      "accuracy": 0.3333333333333333
+    },
+    "leverage_limits.leverage_basis": {
+      "total": 3,
+      "correct": 1,
+      "funds_correct": [
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "funds_incorrect": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets"
+      ],
+      "accuracy": 0.3333333333333333
+    },
+    "distribution_terms.distribution_frequency": {
+      "total": 3,
+      "correct": 3,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "distribution_terms.default_distribution_policy": {
+      "total": 3,
+      "correct": 2,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets"
+      ],
+      "funds_incorrect": [
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "accuracy": 0.6666666666666666
+    },
+    "allocation_targets.secondary_funds_min_pct": {
+      "total": 1,
+      "correct": 0,
+      "funds_correct": [],
+      "funds_incorrect": [
+        "StepStone Private Markets"
+      ],
+      "accuracy": 0.0
+    },
+    "allocation_targets.secondary_funds_max_pct": {
+      "total": 1,
+      "correct": 0,
+      "funds_correct": [],
+      "funds_incorrect": [
+        "StepStone Private Markets"
+      ],
+      "accuracy": 0.0
+    },
+    "allocation_targets.direct_investments_min_pct": {
+      "total": 1,
+      "correct": 0,
+      "funds_correct": [],
+      "funds_incorrect": [
+        "StepStone Private Markets"
+      ],
+      "accuracy": 0.0
+    },
+    "allocation_targets.direct_investments_max_pct": {
+      "total": 1,
+      "correct": 0,
+      "funds_correct": [],
+      "funds_incorrect": [
+        "StepStone Private Markets"
+      ],
+      "accuracy": 0.0
+    },
+    "concentration_limits.max_single_asset_pct": {
+      "total": 1,
+      "correct": 0,
+      "funds_correct": [],
+      "funds_incorrect": [
+        "StepStone Private Markets"
+      ],
+      "accuracy": 0.0
+    },
+    "concentration_limits.max_single_fund_pct": {
+      "total": 2,
+      "correct": 0,
+      "funds_correct": [],
+      "funds_incorrect": [
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "accuracy": 0.0
+    },
+    "concentration_limits.max_single_sector_pct": {
+      "total": 2,
+      "correct": 0,
+      "funds_correct": [],
+      "funds_incorrect": [
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "accuracy": 0.0
+    },
+    "repurchase_terms.early_repurchase_fee_period": {
+      "total": 1,
+      "correct": 0,
+      "funds_correct": [],
+      "funds_incorrect": [
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "accuracy": 0.0
+    },
+    "repurchase_terms.minimum_repurchase_amount": {
+      "total": 1,
+      "correct": 0,
+      "funds_correct": [],
+      "funds_incorrect": [
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "accuracy": 0.0
+    },
+    "leverage_limits.credit_facility_size": {
+      "total": 1,
+      "correct": 0,
+      "funds_correct": [],
+      "funds_incorrect": [
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "accuracy": 0.0
+    },
+    "allocation_targets.private_assets_target_pct": {
+      "total": 1,
+      "correct": 0,
+      "funds_correct": [],
+      "funds_incorrect": [
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "accuracy": 0.0
+    },
+    "allocation_targets.approach": {
+      "total": 1,
+      "correct": 0,
+      "funds_correct": [],
+      "funds_incorrect": [
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "accuracy": 0.0
+    },
+    "concentration_limits.max_single_issuer_pct": {
+      "total": 1,
+      "correct": 0,
+      "funds_correct": [],
+      "funds_incorrect": [
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "accuracy": 0.0
+    }
+  }
+}

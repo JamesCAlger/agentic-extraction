@@ -1,0 +1,120 @@
+experiment:
+  name: hybrid_grounding_test
+  description: MQ Holistic + Reranker with hybrid NLI+LLM grounding for confidence routing
+  hypothesis: Hybrid grounding (NLI fast path + LLM fallback) reduces false negative grounding rate while maintaining accuracy
+
+# Ensemble with MQ Holistic + Reranker, CONFIDENCE ROUTING with HYBRID GROUNDING
+ensemble:
+  enabled: true
+  methods:
+    - multi_query
+    - reranker
+  min_confidence_gap: 0.15
+  agreement_boost: 0.10
+  default_method: reranker
+
+  # T3 settings for reranker
+  t3_top_k_sections: 10
+  t3_max_chunks_per_section: 10
+
+  # Reranker settings (proven effective: 200->10)
+  reranker_first_pass_n: 200
+  reranker_top_k: 10
+  reranker_model: rerank-v3.5
+  reranker_score_threshold: 0.2
+
+  # T4 escalation - escalate when confidence routing indicates uncertainty
+  escalate_to_t4: true
+  escalate_on_disagreement: false  # Don't escalate disagreements - use confidence routing
+  escalate_on_both_null: true      # Still escalate when both methods return null
+  t4_model: claude-haiku-4-5-20251001
+  t4_max_iterations: 12
+  t4_timeout_seconds: 180
+
+  # Multi-query expansion settings with HOLISTIC extraction
+  use_multi_query: true
+  multi_query_retrieval_strategy: keyword
+  multi_query_expansion_method: programmatic
+  multi_query_rrf_k: 60
+  multi_query_per_query_top_k: 15
+  multi_query_final_top_k: 10
+  multi_query_holistic_extraction: true
+
+  # DISABLE hybrid routing (using confidence routing instead)
+  use_hybrid_routing: false
+
+  # ENABLE confidence routing with HYBRID GROUNDING
+  use_confidence_routing: true
+  confidence_min_gap: 0.25        # Need 0.25+ gap to confidently pick one
+  confidence_low_threshold: 0.3   # Both below 0.3 = both uncertain, escalate
+  confidence_high_threshold: 0.7  # Both above 0.7 but disagree = investigate, escalate
+  confidence_require_grounding: true  # Ungrounded = low confidence (but not zero!)
+
+  # HYBRID GROUNDING STRATEGY (NLI + LLM fallback)
+  # This replaces exact_match grounding with:
+  # 1. NLI fast path for clear entailment/contradiction
+  # 2. LLM fallback for ambiguous cases (neutral zone)
+  grounding_strategy: hybrid  # Options: exact_match, nli, llm_judge, hybrid, semantic_similarity
+  grounding_nli_model: cross-encoder/nli-deberta-v3-base
+  grounding_nli_entailment_threshold: 0.7
+  grounding_nli_contradiction_threshold: 0.7
+  grounding_llm_judge_model: gpt-4o-mini
+  grounding_llm_judge_provider: openai
+  grounding_hybrid_nli_high_threshold: 0.85  # Above this, accept without LLM
+  grounding_hybrid_nli_low_threshold: 0.4    # Below this, reject without LLM
+  grounding_hybrid_use_llm_for_ambiguous: true  # Use LLM for uncertain cases
+
+  # DISABLE adversarial validation - fair comparison with baseline
+  adversarial_validation_enabled: false
+  adversarial_validation_lightweight: false
+  adversarial_validation_validate_booleans: false
+  adversarial_validation_validate_all: false
+
+tiers:
+  tier0_enabled: true
+  tier1_enabled: false
+  tier2_enabled: false
+  tier3_enabled: true
+  tier3_only: true
+  tier3_top_k_sections: 10
+  tier3_max_chunks_per_section: 15
+  tier4:
+    enabled: false
+    adversarial_validation:
+      enabled: false
+      lightweight: false
+      validate_booleans: false
+  reranker:
+    enabled: true
+    model: rerank-v3.5
+    first_pass_n: 200
+    top_k: 10
+    score_threshold: 0.2
+
+chunking:
+  strategy: paragraph_atomic
+  max_tokens: 500
+  overlap_tokens: 0
+  min_paragraph_tokens: 30
+
+extraction:
+  model: gpt-4o-mini
+  delay_between_calls: 1.0
+  requests_per_minute: 40
+
+grounding:
+  enabled: true
+  strict_mode: false
+  min_score: 0.0
+  # Note: grounding.strategy here is for the standard extraction grounding
+  # The ensemble.grounding_strategy above controls confidence routing grounding
+  strategy: exact_match
+
+validation:
+  funds:
+    - Blackstone Private Multi-Asset Credit and Income Fund
+    - Blue Owl Alternative Credit Fund
+    - Carlyle AlpInvest Private Markets Secondaries Fund
+    - Hamilton Lane Private Assets Fund
+    - StepStone Private Markets
+  ground_truth_dir: configs/ground_truth

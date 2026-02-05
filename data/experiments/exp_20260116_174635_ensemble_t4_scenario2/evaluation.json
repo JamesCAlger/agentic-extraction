@@ -1,0 +1,890 @@
+{
+  "run_id": "exp_20260116_174635_ensemble_t4_scenario2",
+  "ground_truth_version": "configs/ground_truth",
+  "overall": {
+    "precision": 0.9328859060402684,
+    "recall": 0.8034682080924855,
+    "f1_score": 0.8633540372670808,
+    "accuracy": 0.8470588235294118
+  },
+  "per_fund": {
+    "Blackstone Private Multi-Asset Credit and Income Fund": {
+      "precision": 0.9761904761904762,
+      "recall": 0.9761904761904762,
+      "f1_score": 0.9761904761904762,
+      "accuracy": 0.9818181818181818,
+      "total_fields": 55,
+      "correct_fields": 54,
+      "error_breakdown": {
+        "correct": 54,
+        "wrong_value": 1,
+        "missed": 0,
+        "hallucinated": 0
+      }
+    },
+    "StepStone Private Markets": {
+      "precision": 0.9629629629629629,
+      "recall": 0.7647058823529411,
+      "f1_score": 0.8524590163934426,
+      "accuracy": 0.82,
+      "total_fields": 50,
+      "correct_fields": 41,
+      "error_breakdown": {
+        "correct": 41,
+        "wrong_value": 0,
+        "missed": 8,
+        "hallucinated": 1
+      }
+    },
+    "Hamilton Lane Private Assets Fund": {
+      "precision": 0.9230769230769231,
+      "recall": 0.7741935483870968,
+      "f1_score": 0.8421052631578947,
+      "accuracy": 0.84,
+      "total_fields": 50,
+      "correct_fields": 42,
+      "error_breakdown": {
+        "correct": 42,
+        "wrong_value": 1,
+        "missed": 6,
+        "hallucinated": 1
+      }
+    },
+    "Blue Owl Alternative Credit Fund": {
+      "precision": 0.8518518518518519,
+      "recall": 0.7272727272727273,
+      "f1_score": 0.7846481876332624,
+      "accuracy": 0.8,
+      "total_fields": 50,
+      "correct_fields": 40,
+      "error_breakdown": {
+        "correct": 40,
+        "wrong_value": 3,
+        "missed": 6,
+        "hallucinated": 1
+      }
+    },
+    "Carlyle AlpInvest Private Markets Secondaries Fund": {
+      "precision": 0.9259259259259259,
+      "recall": 0.7272727272727273,
+      "f1_score": 0.814663951120163,
+      "accuracy": 0.78,
+      "total_fields": 50,
+      "correct_fields": 39,
+      "error_breakdown": {
+        "correct": 39,
+        "wrong_value": 0,
+        "missed": 9,
+        "hallucinated": 2
+      }
+    }
+  },
+  "per_field": {
+    "fund_type": {
+      "total": 5,
+      "correct": 5,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "share_classes.share_classes.Class S.class_name": {
+      "total": 3,
+      "correct": 3,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Blue Owl Alternative Credit Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "share_classes.share_classes.Class S.minimum_initial_investment": {
+      "total": 3,
+      "correct": 3,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Blue Owl Alternative Credit Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "share_classes.share_classes.Class S.minimum_additional_investment": {
+      "total": 3,
+      "correct": 3,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Blue Owl Alternative Credit Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "share_classes.share_classes.Class S.sales_load_pct": {
+      "total": 3,
+      "correct": 3,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Blue Owl Alternative Credit Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "share_classes.share_classes.Class S.distribution_fee_pct": {
+      "total": 3,
+      "correct": 3,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Blue Owl Alternative Credit Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "share_classes.share_classes.Class D.class_name": {
+      "total": 4,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "share_classes.share_classes.Class D.minimum_initial_investment": {
+      "total": 4,
+      "correct": 3,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "funds_incorrect": [
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "accuracy": 0.75
+    },
+    "share_classes.share_classes.Class D.minimum_additional_investment": {
+      "total": 4,
+      "correct": 2,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets"
+      ],
+      "funds_incorrect": [
+        "Hamilton Lane Private Assets Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "accuracy": 0.5
+    },
+    "share_classes.share_classes.Class D.sales_load_pct": {
+      "total": 4,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "share_classes.share_classes.Class D.distribution_fee_pct": {
+      "total": 4,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "share_classes.share_classes.Class I.class_name": {
+      "total": 5,
+      "correct": 5,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "share_classes.share_classes.Class I.minimum_initial_investment": {
+      "total": 5,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund"
+      ],
+      "funds_incorrect": [
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "accuracy": 0.8
+    },
+    "share_classes.share_classes.Class I.minimum_additional_investment": {
+      "total": 5,
+      "correct": 3,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Blue Owl Alternative Credit Fund"
+      ],
+      "funds_incorrect": [
+        "Hamilton Lane Private Assets Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "accuracy": 0.6
+    },
+    "share_classes.share_classes.Class I.sales_load_pct": {
+      "total": 5,
+      "correct": 5,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "share_classes.share_classes.Class I.distribution_fee_pct": {
+      "total": 5,
+      "correct": 5,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "share_classes.share_classes.Class I Advisory.class_name": {
+      "total": 1,
+      "correct": 1,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "share_classes.share_classes.Class I Advisory.minimum_initial_investment": {
+      "total": 1,
+      "correct": 1,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "share_classes.share_classes.Class I Advisory.minimum_additional_investment": {
+      "total": 1,
+      "correct": 1,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "share_classes.share_classes.Class I Advisory.sales_load_pct": {
+      "total": 1,
+      "correct": 1,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "share_classes.share_classes.Class I Advisory.distribution_fee_pct": {
+      "total": 1,
+      "correct": 1,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "incentive_fee.has_incentive_fee": {
+      "total": 5,
+      "correct": 5,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "incentive_fee.incentive_fee_pct": {
+      "total": 5,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "accuracy": 0.8
+    },
+    "incentive_fee.hurdle_rate_pct": {
+      "total": 5,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund"
+      ],
+      "funds_incorrect": [
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "accuracy": 0.8
+    },
+    "incentive_fee.hurdle_rate_as_stated": {
+      "total": 5,
+      "correct": 5,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "incentive_fee.hurdle_rate_frequency": {
+      "total": 5,
+      "correct": 3,
+      "funds_correct": [
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "Blue Owl Alternative Credit Fund"
+      ],
+      "accuracy": 0.6
+    },
+    "incentive_fee.high_water_mark": {
+      "total": 5,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "accuracy": 0.8
+    },
+    "incentive_fee.has_catch_up": {
+      "total": 5,
+      "correct": 5,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "incentive_fee.catch_up_rate_pct": {
+      "total": 5,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [
+        "Blue Owl Alternative Credit Fund"
+      ],
+      "accuracy": 0.8
+    },
+    "incentive_fee.catch_up_ceiling_pct": {
+      "total": 5,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [
+        "Blue Owl Alternative Credit Fund"
+      ],
+      "accuracy": 0.8
+    },
+    "incentive_fee.fee_basis": {
+      "total": 5,
+      "correct": 5,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "incentive_fee.crystallization_frequency": {
+      "total": 5,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "accuracy": 0.8
+    },
+    "incentive_fee.underlying_fund_incentive_range": {
+      "total": 5,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [
+        "StepStone Private Markets"
+      ],
+      "accuracy": 0.8
+    },
+    "expense_cap.has_expense_cap": {
+      "total": 5,
+      "correct": 5,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "expense_cap.expense_cap_pct": {
+      "total": 5,
+      "correct": 3,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "accuracy": 0.6
+    },
+    "repurchase_terms.repurchase_frequency": {
+      "total": 5,
+      "correct": 5,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "repurchase_terms.repurchase_amount_pct": {
+      "total": 5,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [
+        "Blue Owl Alternative Credit Fund"
+      ],
+      "accuracy": 0.8
+    },
+    "repurchase_terms.repurchase_basis": {
+      "total": 5,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund"
+      ],
+      "funds_incorrect": [
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "accuracy": 0.8
+    },
+    "repurchase_terms.repurchase_percentage_min": {
+      "total": 5,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [
+        "Blue Owl Alternative Credit Fund"
+      ],
+      "accuracy": 0.8
+    },
+    "repurchase_terms.repurchase_percentage_max": {
+      "total": 5,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [
+        "Blue Owl Alternative Credit Fund"
+      ],
+      "accuracy": 0.8
+    },
+    "repurchase_terms.lock_up_period_years": {
+      "total": 5,
+      "correct": 5,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "repurchase_terms.early_repurchase_fee_pct": {
+      "total": 5,
+      "correct": 5,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "leverage_limits.uses_leverage": {
+      "total": 5,
+      "correct": 5,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "leverage_limits.max_leverage_pct": {
+      "total": 5,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [
+        "Blue Owl Alternative Credit Fund"
+      ],
+      "accuracy": 0.8
+    },
+    "leverage_limits.leverage_basis": {
+      "total": 5,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [
+        "Blue Owl Alternative Credit Fund"
+      ],
+      "accuracy": 0.8
+    },
+    "distribution_terms.distribution_frequency": {
+      "total": 5,
+      "correct": 3,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "funds_incorrect": [
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "accuracy": 0.6
+    },
+    "distribution_terms.default_distribution_policy": {
+      "total": 5,
+      "correct": 3,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "funds_incorrect": [
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "accuracy": 0.6
+    },
+    "allocation_targets.secondary_funds_min_pct": {
+      "total": 5,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [
+        "StepStone Private Markets"
+      ],
+      "accuracy": 0.8
+    },
+    "allocation_targets.secondary_funds_max_pct": {
+      "total": 5,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [
+        "StepStone Private Markets"
+      ],
+      "accuracy": 0.8
+    },
+    "allocation_targets.direct_investments_min_pct": {
+      "total": 5,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [
+        "StepStone Private Markets"
+      ],
+      "accuracy": 0.8
+    },
+    "allocation_targets.direct_investments_max_pct": {
+      "total": 5,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [
+        "StepStone Private Markets"
+      ],
+      "accuracy": 0.8
+    },
+    "allocation_targets.secondary_investments_min_pct": {
+      "total": 5,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "StepStone Private Markets",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund"
+      ],
+      "funds_incorrect": [
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "accuracy": 0.8
+    },
+    "concentration_limits.max_single_asset_pct": {
+      "total": 5,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [
+        "StepStone Private Markets"
+      ],
+      "accuracy": 0.8
+    },
+    "concentration_limits.max_single_fund_pct": {
+      "total": 5,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [
+        "StepStone Private Markets"
+      ],
+      "accuracy": 0.8
+    },
+    "concentration_limits.max_single_sector_pct": {
+      "total": 5,
+      "correct": 4,
+      "funds_correct": [
+        "Blackstone Private Multi-Asset Credit and Income Fund",
+        "Hamilton Lane Private Assets Fund",
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [
+        "StepStone Private Markets"
+      ],
+      "accuracy": 0.8
+    },
+    "share_classes.share_classes.Class R.class_name": {
+      "total": 1,
+      "correct": 1,
+      "funds_correct": [
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "share_classes.share_classes.Class R.minimum_initial_investment": {
+      "total": 1,
+      "correct": 0,
+      "funds_correct": [],
+      "funds_incorrect": [
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "accuracy": 0.0
+    },
+    "share_classes.share_classes.Class R.minimum_additional_investment": {
+      "total": 1,
+      "correct": 0,
+      "funds_correct": [],
+      "funds_incorrect": [
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "accuracy": 0.0
+    },
+    "share_classes.share_classes.Class R.sales_load_pct": {
+      "total": 1,
+      "correct": 1,
+      "funds_correct": [
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "share_classes.share_classes.Class R.distribution_fee_pct": {
+      "total": 1,
+      "correct": 1,
+      "funds_correct": [
+        "Hamilton Lane Private Assets Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "share_classes.share_classes.Class U.class_name": {
+      "total": 2,
+      "correct": 2,
+      "funds_correct": [
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "share_classes.share_classes.Class U.minimum_initial_investment": {
+      "total": 2,
+      "correct": 1,
+      "funds_correct": [
+        "Blue Owl Alternative Credit Fund"
+      ],
+      "funds_incorrect": [
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "accuracy": 0.5
+    },
+    "share_classes.share_classes.Class U.minimum_additional_investment": {
+      "total": 2,
+      "correct": 1,
+      "funds_correct": [
+        "Blue Owl Alternative Credit Fund"
+      ],
+      "funds_incorrect": [
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "accuracy": 0.5
+    },
+    "share_classes.share_classes.Class U.sales_load_pct": {
+      "total": 2,
+      "correct": 2,
+      "funds_correct": [
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    },
+    "share_classes.share_classes.Class U.distribution_fee_pct": {
+      "total": 2,
+      "correct": 2,
+      "funds_correct": [
+        "Blue Owl Alternative Credit Fund",
+        "Carlyle AlpInvest Private Markets Secondaries Fund"
+      ],
+      "funds_incorrect": [],
+      "accuracy": 1.0
+    }
+  }
+}

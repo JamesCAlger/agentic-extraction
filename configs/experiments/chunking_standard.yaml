@@ -1,0 +1,64 @@
+# Standard Chunking Strategy (Baseline)
+#
+# Current behavior: fill to max_tokens with paragraph-aware splits
+
+experiment:
+  name: chunking_standard
+  description: "Baseline chunking strategy (standard 500-token chunks)"
+  hypothesis: "Standard chunking provides baseline accuracy for comparison"
+
+chunking:
+  strategy: standard
+  max_tokens: 500
+  overlap_tokens: 200
+
+extraction:
+  model: gpt-4o-mini
+  provider: openai
+  max_chunk_tokens: 1000
+  overlap_tokens: 100
+  max_retries: 2
+  extraction_mode: combined
+  use_examples: true
+  max_examples: 3
+  delay_between_calls: 1.0
+  requests_per_minute: 40
+
+tiers:
+  tier0_enabled: true
+  tier1_enabled: false
+  tier2_enabled: false
+  tier3_enabled: true
+  tier3_only: true
+  tier3_top_k_sections: 10
+  tier3_max_chunks_per_section: 10
+  tier3_keyword_threshold: 0
+
+  reranker:
+    enabled: false
+
+  tier4:
+    enabled: false
+
+grounding:
+  enabled: true
+  strict_mode: false
+  min_score: 0.0
+
+observability:
+  enabled: true
+  trace_level: full
+  save_llm_responses: true
+
+validation:
+  funds:
+    - Blackstone Private Multi-Asset Credit and Income Fund
+    - StepStone Private Markets
+    - Hamilton Lane Private Assets Fund
+    - Blue Owl Alternative Credit Fund
+    - Carlyle AlpInvest Private Markets Secondaries Fund
+  ground_truth_dir: configs/ground_truth
+
+cost:
+  input_token_cost: 0.00015
+  output_token_cost: 0.0006
