@@ -1,5 +1,7 @@
 # Agentic Extraction: LLM-Powered Data Extraction from SEC Filings
 
+<img width="350" height="796" alt="image 4" src="https://github.com/user-attachments/assets/b66bece0-e186-49a3-bae2-2c77c2310a63" />
+
 A multi-tier agentic extraction pipeline that parses unstructured SEC filings (N-2, N-CSR) into structured, validated data for evergreen private equity funds. Built to solve a real market gap: the $400B+ evergreen fund space lacks specialized data infrastructure despite rich public disclosures.
 
 ## The Problem
