@@ -6,7 +6,7 @@
 
 A multi-tier agentic extraction pipeline that parses unstructured SEC filings (N-2, N-CSR) into structured, validated data for evergreen private equity funds. Built to solve a real market gap: the $400B+ evergreen fund space lacks specialized data infrastructure despite rich public disclosures.
 
-**[Read the full write-up on Medium](https://medium.com/p/1519f0425c5a)**
+**[Read the full write-up on Medium](https://medium.com/@algercjames/agentic-extraction-turning-100-page-sec-filings-into-actionable-data-1519f0425c5a)**
 
 ## The Problem
 
