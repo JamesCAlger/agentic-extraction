@@ -26,7 +26,7 @@ A four-tier extraction architecture that progressively escalates from determinis
 ```
 Document ──> Tier 0: XBRL Tag Parsing (deterministic, 100% accurate)
          ──> Tier 1: Section-to-Field Mapping + LLM (structured extraction with dynamic few-shot examples)
-         ──> Tier 2: Regex Pattern Fallback (finds untagged sections)
+         ──> Tier 2: Regex Pattern Fallback
          ──> Tier 3: Scoped Agentic Search (keyword scoring -> candidate sections -> focused LLM extraction)
          ──> Grounding Validation (verify every value appears in source text)
          ──> Result Assembly + Evaluation
@@ -160,6 +160,6 @@ The `data/experiments/` directory contains the baseline (48.4% accuracy) and bes
 This is a POC / proof of concept. The extraction pipeline is functional and evaluated. Remaining work:
 
 - **Scale validation** to additional fund families beyond the initial 5
-- **API and UI** for querying extracted data (Phase 2, blocked on 95%+ accuracy target)
+- **API and UI** for querying extracted data
 - **N-CSR extraction** for financial data (annual reports vs. registration statements)
 - **Entity resolution** for cross-fund holdings comparison
